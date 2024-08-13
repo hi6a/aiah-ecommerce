@@ -1,9 +1,11 @@
-export interface iSignInRequest{
+
+
+export interface ILoginRequest{
   username: string,
   password: string
   }
   
-  export interface iSignInResponse{
+export interface ILoginResponse{
     Login: {
       AccessToken:      string;
       ExpiresIn:        number;
@@ -16,7 +18,18 @@ export interface iSignInRequest{
     }
   }
   
-  export interface iSignUpRequest{
+
+  // export interface iLoginError{
+  //   Code:       number;
+  //   Message:    string[];
+  //   Error:      string[];
+  //   StackTrace: string;
+
+  //   }
+
+
+    
+export interface iSignUpRequest{
     Firstname: string;
     Lastname:  string;
     Email:     string;
@@ -24,7 +37,7 @@ export interface iSignInRequest{
     RoleName:  string;
     }
   
-    export interface iSignUpResponse{
+export interface iSignUpResponse{
       id:                         string;
       createdTimestamp:           number;
       username:                   string;
@@ -46,3 +59,5 @@ export interface iSignInRequest{
       }
       attributes:                 null;
     }
+
+

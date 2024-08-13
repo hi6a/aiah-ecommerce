@@ -6,18 +6,29 @@ import { AppComponent } from './app.component';
 import { ProductListingModule } from './features/product-listing/product-listing.module';
 import { LoginComponent } from './core/auth/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserAuthService } from './core/auth/services/user-auth.service';
+import { UserAuthService } from './core/auth/services/user-login.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthinterceptorsService } from './core/auth/services/authinterceptors.service';
 import { SignupComponent } from './core/auth/signup/signup.component';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './core/auth/state/auth.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffect } from './core/auth/state/auth.effects';
+import { AuthModule } from './core/auth/auth.module';
+import { HomeModule } from './features/home-page/home/home.module';
+import { NavComponent } from './core/app-shell/nav/nav.component';
+import { FooterComponent } from './core/app-shell/footer/footer.component';
+import { ShellComponent } from './core/app-shell/shell/shell.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
+    NavComponent,
+    FooterComponent,
+    ShellComponent,
+
    
     
   ],
@@ -25,10 +36,14 @@ import { SignupComponent } from './core/auth/signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     ProductListingModule,
-    ReactiveFormsModule
+    AuthModule,
+    StoreModule.forRoot(authReducer),
+    EffectsModule.forRoot([AuthEffect]),
+    HomeModule
+   
+    
   ],
-  providers: [ UserAuthService, 
-    { provide: HTTP_INTERCEPTORS, useClass: AuthinterceptorsService, multi: true }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

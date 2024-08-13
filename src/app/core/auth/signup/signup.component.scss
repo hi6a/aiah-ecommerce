@@ -1,40 +1,44 @@
-*{
-  font-family: Arial;
+* {
+    font-family: Arial;
 }
 
-.signup-form{
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+.signup-form {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .form-control {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 .form-control label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 .form-control input {
-  width: 300px;
-  padding: 10px;
-  box-sizing: border-box;
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 .form-control button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .form-control button:hover {
-  background-color: #cccccc;
+    background-color: #cccccc;
 }
 .form-control button:active {
-  background-color: #737373;
+    background-color: #737373;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
 }

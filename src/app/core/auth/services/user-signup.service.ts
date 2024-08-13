@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../env/env.dev';
 import { HttpClient } from '@angular/common/http';
-import { iSignUpRequest, iSignUpResponse } from '../user.model';
+import { iSignUpRequest, iSignUpResponse } from '../models/auth.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
