@@ -1,15 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListingModule } from './features/product-listing/product-listing.module';
-import { LoginComponent } from './core/auth/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { UserAuthService } from './core/auth/services/user-login.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthinterceptorsService } from './core/auth/services/authinterceptors.service';
-import { SignupComponent } from './core/auth/signup/signup.component';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './core/auth/state/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,15 +12,15 @@ import { HomeModule } from './features/home-page/home/home.module';
 import { NavComponent } from './core/app-shell/nav/nav.component';
 import { FooterComponent } from './core/app-shell/footer/footer.component';
 import { ShellComponent } from './core/app-shell/shell/shell.component';
-
-
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     FooterComponent,
     ShellComponent,
+
 
    
     
@@ -39,11 +32,17 @@ import { ShellComponent } from './core/app-shell/shell/shell.component';
     AuthModule,
     StoreModule.forRoot(authReducer),
     EffectsModule.forRoot([AuthEffect]),
-    HomeModule
-   
+    HomeModule,
+    MatDividerModule
+
     
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  providers: [
+      provideAnimationsAsync()
+
+  ]
 })
 export class AppModule { }

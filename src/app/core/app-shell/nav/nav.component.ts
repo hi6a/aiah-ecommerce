@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { logout } from '../../auth/state/auth.actions';
+import { AuthState } from '../../auth/state/auth.reducers';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.scss'
+  styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  store: any;
+  constructor(private store: Store<AuthState>){}
 
+//  searchValue='';
 
   onLogout() {
 

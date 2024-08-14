@@ -10,5 +10,6 @@ export class ProductCardComponent {
   @Input() src:string=''; 
   @Input() alt:string='';
   @Input() title:string='';
-  
+  @Input() price!:number;
+
 }

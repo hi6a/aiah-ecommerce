@@ -1,9 +1,22 @@
-<div class="product-card">
+<!-- <div class="product-card">
   <div class="img-container">
     <img src="{{src}}" alt="{{alt}}">
   </div>
   <div class="product-info">
-    <p class="title">{{title}}</p>
-   
+    <p class="title" *ngIf="title">{{title}}</p>
+    <p *ngIf="price"> {{ price  | currency:'USD' }}</p>
+  </div>
+</div> -->
+
+<div class="product-card">
+  <div class="img-container">
+  <img class="responsive-img" [src]="src" [alt]="alt">
+</div>
+  <div class="product-info">
+    <p class="title" *ngIf="title">{{title}}</p>
+    <p class="price"> {{ price  | currency:'USD' }}</p>
+  </div>
+  <div class="actions">
+    <button mat-button>Ad to Cart</button>
   </div>
 </div>
