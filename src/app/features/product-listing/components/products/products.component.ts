@@ -1,102 +1,146 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/products.model';
 import { ProductsApiService } from '../../services/products/products-api.service';
-import { FilterByCategoryService } from '../../services/filter/filter-by-category.service';
-import { CategoriesService } from '../../services/filter/categories.service';
-import { SortService } from '../../services/sort/sort.service';
-import { UpdateSortService } from '../../services/sort/update-sort.service';
+import { CategoriesService } from '../../services/categories/categories.service';
+import { SortService } from '../../services/products/sort.service';
+import { ICartItem } from '../../../cart/models/cart.model';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+  styleUrl: './products.component.scss',
 })
-  export class ProductsComponent implements OnInit{
-
-  searchValue='';
+export class ProductsComponent implements OnInit {
+  originalProductList: Product[] = [];
   productList!: Product[];
+  searchlist!: Product[];
+  searchValue = '';
   categories!: string[];
-  sortOptions: string[]=['Default','Ascending','Descending',
-                        'Price Ascending','Price Descending',
-                        'Rate Ascending','Rate Descending'];
-  currentSort= 'Default';
+  currentCategory = 'All';
+  sortOptions: string[] = [
+    'Ascending',
+    'Descending',
+    'Price Ascending',
+    'Price Descending',
+    'Rate Ascending',
+    'Rate Descending',
+  ];
+  currentSort = 'Default';
 
+  constructor(
+    private productsService: ProductsApiService,
+    private cat: CategoriesService,
+    private sortService: SortService
+  ) {}
 
-  constructor(private pService: ProductsApiService,
-              private cat: CategoriesService,
-              private sort :SortService,
-              private checkSorting: UpdateSortService
-             
-  ){}
-  
   ngOnInit(): void {
-     this.displayProducts(),
-     this.displayCategories(),
-     console.log("current sort: ",this.currentSort);
+    // this.displayProducts(),
+
+    this.displayCategories(),
+      this.productsService.getAllProducts().subscribe({
+        next: (products: Product[]) => {
+          this.originalProductList = products;
+          this.productList = this.originalProductList;
+          this.searchlist = this.productList;
+        },
+
+        error: (err: any) => {
+          alert(err.message);
+        },
+      });
   }
 
-  displayProducts(){
-    this.pService.getAllProducts().subscribe({
-      next: (products: Product[])=>{
-      this.productList = products;
-      this.searchValue ='';
-      // console.log(this.productList);
-    },
-
-      error: (err:any) => {
-        alert(err.message)
-      }})}
-
-      
-
-
-  displayCategories(){
+  displayCategories() {
     this.cat.getAllCategories().subscribe({
-      next: (categories: string[])=>{
-      this.categories = categories;
-      // console.log(this.categories);,
+      next: (categories: string[]) => {
+        this.categories = categories;
       },
-      error: (err:any) => {
-        alert(err.message)
-      }})}
+      error: (err: any) => {
+        alert(err.message);
+      },
+    });
+  }
 
-
-      onCategoryChange(event:any){
+  onCategoryChange(event: any) {
     let value = event.target.value;
-    if(value ==="All")
-    this.displayProducts();
+
+    if (value === 'All') {
+      if (this.searchValue === '') this.productList = this.originalProductList;
       else {
-      this.cat.getProductsByCatName(value).subscribe(( res:Product[]) =>{
-      this.productList = res;
-      this.checkSorting.sort(this.currentSort,this.productList)
-      console.log("after filter change: ",this.productList);
-      console.log("check currentSort again: ", this.currentSort)
-      })
-     
-  }
-
-  
-  }
-
-  onSortChange(event:any){
-    this.currentSort = event.target.value;
-    this.checkSorting.sort(this.currentSort,this.productList)
-    console.log("after sorting change: ",this.currentSort);
-  }
-
-  onSearch(){
-      if(this.searchValue!=''){
-      this.pService.getAllProducts().subscribe((products: Product[])=>{
-        this.productList = products.filter(product=>
+        //get getAllproducts - products that dont have searchvalue in them
+        this.productList = this.originalProductList.filter((product) =>
           product.title.toLowerCase().includes(this.searchValue.toLowerCase())
-        )
-      })
+        );
+      }
+      this.sortService.sort(this.currentSort, this.productList);
+      //currentsearch list is the category list :)
+      this.searchlist = [...this.originalProductList];
+      // console.log(
+      //     'search list from change Cat to All: ',
+      //     this.searchlist
+      // );
+    } else {
+      let productsByCategory: Product[];
+      this.cat.getProductsByCategory(value).subscribe((res: Product[]) => {
+        //products inside res tht have the search value in their title. (if search value is not empty)
+        productsByCategory = res;
+        this.productList = productsByCategory.filter((product) =>
+          product.title.toLowerCase().includes(this.searchValue.toLowerCase())
+        );
+        this.sortService.sort(this.currentSort, this.productList);
+        this.searchlist = [...productsByCategory];
+        // console.log(
+        //     'search list from change Cat to else: ',
+        //     this.searchlist
+        // );
+        this.currentCategory = value;
+      });
+    }
   }
-console.log(this.searchValue)
+
+  onSortChange(event: any) {
+    this.currentSort = event.target.value;
+    this.sortService.sort(this.currentSort, this.productList);
+    this.searchlist = [...this.productList];
+  }
+
+  onSearch() {
+    if (this.searchValue !== '') {
+      this.productList = this.searchlist.filter((product) =>
+        product.title.toLowerCase().includes(this.searchValue.toLowerCase())
+      );
+    } else {
+      this.productList = this.searchlist;
+    }
+
+    // console.log('search value: ', this.searchValue);
+    // console.log('search list from onSearch: ', this.searchlist);
+  }
+
+  onClear() {
+    this.searchValue = '';
+    this.productList = this.searchlist;
+    // console.log('search list from onClear: ', this.searchlist);
+  }
+
+  ////////////////////////////CART///////////////////////////////
+  cartProducts: ICartItem[] = [];
+
+  addToCart(event: ICartItem) {
+    if ('cart' in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
+      let exists = this.cartProducts.find(
+        (item) => item.product.id === event.product.id
+      );
+      if (exists) {
+        exists.quantity += event.quantity;
+        // alert(exists.product.title + ' is already in your cart!');
+      } else {
+        this.cartProducts.push(event);
+      }
+    } else {
+      this.cartProducts.push(event);
+    }
+    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+  }
 }
-
-
-  }
-
-
-

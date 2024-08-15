@@ -1,41 +1,42 @@
 .shop-header {
-    margin: 3em 5em;
+  margin: 3em 5em;
 }
 .title {
-    font-size: 5em;
-    margin: 0;
-    margin-bottom: 30px;
+  font-size: 5em;
+  margin: 0;
+  margin-bottom: 30px;
 }
 
 .products-action {
-    margin: 1em;
-    position: relative;
-    display: block;
+  margin: 1em;
+  position: relative;
+  display: block;
 }
 
 .filter,
 .sort {
-    display: inline;
+  display: inline;
 }
 .filter-option,
 .sort-option {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 .search-form-field {
-    position: absolute;
-    right: 0;
-    bottom: -25px;
+  position: absolute;
+  right: 0;
+  bottom: -25px;
 }
 
 .products-list {
-    margin: 0 8em;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 4.3em;
+  margin: 0 8em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4.3em;
 }
 
 .card {
-    margin: 30px;
+  // margin: 30px;
+  display: inline-block;
 }

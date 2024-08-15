@@ -1,0 +1,16 @@
+<div class="product-details-container">
+  <div class="product-image">
+    <!-- <img [src]="product.image" alt="{{ product.title }}" /> -->
+  </div>
+  <div class="product-info">
+    @if(product){
+    <h1 class="product-title">{{product.title}}</h1>
+    <p class="product-description">{{product.description}}</p>
+    <p class="product-price">{{product.price | currency:'USD'}}</p>
+    <p class="product-rating">{{product.rating.rate}}</p>
+    <button class="add-to-cart" 
+  
+    >Add to Cart</button>
+    }
+  </div>
+</div>

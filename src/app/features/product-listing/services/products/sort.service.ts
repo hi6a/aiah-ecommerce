@@ -10,12 +10,7 @@ import { Observable } from 'rxjs';
 export class SortService {
 
 
-  constructor(private http:HttpClient) { }
-  
-  getAllProductsDesc(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${environment.apiURL}products?sort=desc`);
-
-  }
+  constructor() { }
 
   
   sortAlph(products: Product[], order: 'asc' | 'desc'): void{
@@ -44,6 +39,37 @@ export class SortService {
     }
     else{
       products.sort((a, b) => b.rating.rate - a.rating.rate);
+    }
+  }
+
+
+  sort(value: string,  products:Product[]):void{
+    switch (value) {
+      case 'Ascending':
+        this.sortAlph(products,'asc');
+      break;
+
+      case 'Descending':
+        this.sortAlph(products,'desc');
+        break;
+
+      case 'Price Ascending':
+        this.sortPrice(products,'asc');
+        break;
+
+      case 'Price Descending':
+        this.sortPrice(products,'desc');
+        break;
+
+      case 'Rate Ascending':
+        this.sortRating(products,'asc');
+        break;
+
+      case 'Rate Descending':
+        this.sortRating(products,'desc');
+        break;
+    
+      default:
     }
   }
 }

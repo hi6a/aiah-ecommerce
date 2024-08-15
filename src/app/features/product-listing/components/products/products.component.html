@@ -1,56 +1,72 @@
 <div class="shop-header">
+  <p class="title">Shop</p>
 
-<p class="title">Shop</p>
+  <div class="products-action">
+    <div class="filter">
+      <label for="filter-option">Filter</label>
+      <select class="filter-option" (change)="onCategoryChange($event)">
+        <option value="All">All</option>
+        <!-- @for(item of categories; track item){ -->
+        <option value="{{ item }}" *ngFor="let item of categories">
+          {{ item | initialUpper }}
+        </option>
+      </select>
+    </div>
+    <div class="sort">
+      <label for="sort-option">Sort</label>
+      <select class="sort-option" (change)="onSortChange($event)">
+        <!-- @for(item of categories; track item){ -->
+        <option value="{{ item }}" *ngFor="let item of sortOptions">
+          {{ item }}
+        </option>
+      </select>
+    </div>
 
-<div class="products-action">
-<div class="filter">
-  <label for="filter-option">Filter</label>
-  <select class="filter-option" (change)="onCategoryChange($event)">
-    <option value="All">All</option>
-    <!-- @for(item of categories; track item){ -->
-    <option value="{{item}}" *ngFor="let item of categories">{{item|initialUpper}}</option>
-    
-  </select>
-</div>
-  <div class="sort">
-    <label for="sort-option">Sort</label>
-    <select class="sort-option" (change)="onSortChange($event)">
-      <!-- @for(item of categories; track item){ -->
-      <option value="{{item}}" *ngFor="let item of sortOptions">{{item}}</option>
-      
-    </select>
+    <mat-form-field class="search-form-field">
+      @if (searchValue) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Search"
+          (click)="onSearch()"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      }
+      <input
+        matInput
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="searchValue"
+        (input)="onSearch()"
+        (keyup.enter)="onSearch()"
+      />
+      @if (searchValue) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="onClear()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
   </div>
 
-  <mat-form-field class="search-form-field">
-    @if(searchValue){
-    <button matSuffix mat-icon-button aria-label="Search" (click)="onSearch()">   
-      <mat-icon>search</mat-icon>
-    </button>
-  }
-    <input matInput type="text" placeholder="Search" [(ngModel)]="searchValue" (input)="onSearch()" (keyup.enter)="onSearch()">
-    @if (searchValue) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="displayProducts()">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-</mat-form-field>
-</div>
-
-
-
-
   <mat-divider></mat-divider>
-
 </div>
 
-
-<div class="products-list" >
+<div class="products-list">
   <!-- @for (product of productList; track: product){ -->
-    <app-product-card class="card" *ngFor="let product of productList"
-    [src]="product.image"
-    [title] = "product.title"
-    [price] = "product.price"
-    ></app-product-card>
+
+  <app-product-card
+    class="card"
+    *ngFor="let product of productList"
+    [productData]="product"
+    (product)="addToCart($event)"
+  >
+  </app-product-card>
 
   <!-- } -->
 </div>

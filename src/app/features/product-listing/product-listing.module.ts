@@ -4,40 +4,35 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductsComponent } from './components/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InitialUpperPipe } from './pipes/initial-upper.pipe';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 // import {MatCardContent, MatCardImage, MatCardModule} from '@angular/material/card'
 // import {MatButtonModule} from '@angular/material/button'
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    ProductCardComponent,
-    ProductsComponent,
-    InitialUpperPipe
-
-
-
-    
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    MatDividerModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule
-  ],
-  exports: [
-    ProductCardComponent,
-    ProductsComponent
-
-  ]
+    declarations: [
+        ProductCardComponent,
+        ProductsComponent,
+        InitialUpperPipe,
+        ProductDetailsComponent,
+    ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        MatDividerModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        RouterModule,
+    ],
+    exports: [ProductCardComponent, ProductsComponent],
 })
-export class ProductListingModule { }
+export class ProductListingModule {}

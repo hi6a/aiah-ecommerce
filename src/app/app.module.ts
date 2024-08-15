@@ -13,18 +13,11 @@ import { NavComponent } from './core/app-shell/nav/nav.component';
 import { FooterComponent } from './core/app-shell/footer/footer.component';
 import { ShellComponent } from './core/app-shell/shell/shell.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { RouterModule } from '@angular/router';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-    FooterComponent,
-    ShellComponent,
-
-
-   
-    
-  ],
+  declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,16 +26,12 @@ import {MatDividerModule} from '@angular/material/divider';
     StoreModule.forRoot(authReducer),
     EffectsModule.forRoot([AuthEffect]),
     HomeModule,
-    MatDividerModule
-
-    
+    MatDividerModule,
+    RouterModule,
   ],
 
   bootstrap: [AppComponent],
 
-  providers: [
-      provideAnimationsAsync()
-
-  ]
+  providers: [provideAnimationsAsync()],
 })
-export class AppModule { }
+export class AppModule {}

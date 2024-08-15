@@ -9,14 +9,21 @@
 </div> -->
 
 <div class="product-card">
-  <div class="img-container">
-  <img class="responsive-img" [src]="src" [alt]="alt">
-</div>
-  <div class="product-info">
-    <p class="title" *ngIf="title">{{title}}</p>
-    <p class="price"> {{ price  | currency:'USD' }}</p>
+  <div class="header" routerLink="/products/details/{{ productData.id }}">
+    <div class="img-container">
+      <img
+        class="responsive-img"
+        [src]="productData.image"
+        [alt]="productData.title"
+      />
+    </div>
+    <div class="product-info">
+      <p class="title" *ngIf="productData.title">{{ productData.title }}</p>
+
+      <p class="price">{{ productData.price | currency: 'USD' }}</p>
+    </div>
   </div>
   <div class="actions">
-    <button mat-button>Ad to Cart</button>
+    <button mat-button (click)="add()">Add to Cart</button>
   </div>
 </div>
