@@ -15,7 +15,10 @@ import { ShellComponent } from './core/app-shell/shell/shell.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
-
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],
   imports: [
@@ -28,6 +31,10 @@ import { RouterModule } from '@angular/router';
     HomeModule,
     MatDividerModule,
     RouterModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
   ],
 
   bootstrap: [AppComponent],

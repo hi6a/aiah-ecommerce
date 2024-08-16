@@ -1,11 +1,11 @@
-import { createReducer, on } from "@ngrx/store";
-import { login} from "./auth.actions";
-import { ILoginRequest } from "../models/auth.model";
-import { Token } from "@angular/compiler";
-import { IUser } from "../models/user.model";
-import * as AuthActions from "./auth.actions"
+import { createReducer, on } from '@ngrx/store';
+import { login } from './auth.actions';
+import { ILoginRequest } from '../models/auth.model';
+import { Token } from '@angular/compiler';
+import { IUser } from '../models/user.model';
+import * as AuthActions from './auth.actions';
 
-export interface AuthState{
+export interface AuthState {
   // user: IUser | undefined;
   email: string | undefined;
   token: string | undefined;
@@ -13,18 +13,18 @@ export interface AuthState{
 
 export const initialAuthState: AuthState = {
   email: undefined,
-  token: undefined
-}
+  token: undefined,
+};
 
 export const authReducer = createReducer(
-
   initialAuthState,
 
   on(AuthActions.login, (state, action) => {
-      return {
-          email: action.email,
-          token: action.token
-      }
+    return {
+      email: action.email,
+      token: action.token,
+      userId: action.userId,
+    };
   })
 );
 
@@ -37,7 +37,6 @@ export const authReducer = createReducer(
 //   error: string;
 // }
 
-
 // export const initialState: ILoginState ={
 //   isloggedIn : false,
 //   User: {
@@ -47,7 +46,6 @@ export const authReducer = createReducer(
 //   error: 'initial error',
 // };
 
-
 // export const authReducer = createReducer(
 //   initialState,
 //   on(loginSuccess,(state = initialState, {loginRes,username})=> ({
@@ -56,7 +54,7 @@ export const authReducer = createReducer(
 //     User: {
 //       email: username,
 //       token: loginRes.Login.AccessToken,
-  
+
 //     },
 
 //     error: 'no error',
@@ -67,7 +65,6 @@ export const authReducer = createReducer(
 //   }))
 
 // );
-
 
 // export interface ISignupState{
 //   isSignedUp: boolean;

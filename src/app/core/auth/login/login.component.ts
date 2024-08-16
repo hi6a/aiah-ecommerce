@@ -7,13 +7,13 @@ import { Store } from '@ngrx/store';
 import { login } from '../state/auth.actions';
 import { Observable } from 'rxjs';
 import { AuthState } from '../state/auth.reducers';
-import { tap,noop } from 'rxjs';
-
+import { tap, noop } from 'rxjs';
+import { GenerateUserIdService } from '../services/generate-user-id.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   // isLoggedIn$!: Observable<boolean>;
@@ -21,34 +21,39 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private auth: UserAuthService,
-              private router: Router, private store: Store<AuthState>
-  ){
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: UserAuthService,
+    private router: Router,
+    private store: Store<AuthState>,
+    private generateID: GenerateUserIdService
+  ) {
     // this.user$ = this.store.select(selectUser);
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
-
-  onSubmit(){
+  onSubmit() {
     const val: ILoginRequest = this.loginForm.value;
     console.log(val);
-    this.auth.login(val)
-        .pipe(
-            tap(user => {
-                this.store.dispatch(login({email: val.username,token: user.Login.AccessToken}));
-                this.router.navigate(['/products']);
-
+    this.auth
+      .login(val)
+      .pipe(
+        tap((user) => {
+          this.store.dispatch(
+            login({
+              email: val.username,
+              token: user.Login.AccessToken,
+              userId: this.generateID.stringToHex(val.username),
             })
-        )          .subscribe(
-            noop,
-            () => alert('Login Failed')
-        );
+          );
+          this.router.navigate(['/products']);
+        })
+      )
+      .subscribe(noop, () => alert('Login Failed'));
   }
-
 
   // onSubmit() {
   //   if (this.loginForm.valid) {
@@ -59,24 +64,14 @@ export class LoginComponent {
   // }
   // }
 
+  // if (this.loginForm.valid) {
+  //   console.log('Form submitted', this.loginForm.value);
+  //   this.auth.login(this.loginForm.value).subscribe((res: iSignInResponse) => {
+  //   localStorage.setItem('token', res.Login.AccessToken)
+  //   this.router.navigate(['']);
+  //   })
 
-
-
-
-
-    // if (this.loginForm.valid) {
-    //   console.log('Form submitted', this.loginForm.value);
-    //   this.auth.login(this.loginForm.value).subscribe((res: iSignInResponse) => {
-    //   localStorage.setItem('token', res.Login.AccessToken)
-    //   this.router.navigate(['']);
-    //   })
-      
-    // } else {
-    //   console.log('Form is invalid');
-    // }
-
-
-
-
-  }
-
+  // } else {
+  //   console.log('Form is invalid');
+  // }
+}

@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { CartRoutingModule } from './cart-routing.module';
 import { CurrencyPipe } from '@angular/common';
-import { CartTableComponent } from './components/cart-table/cart-table.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { CartGridComponent } from './components/cart-grid/cart-grid.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [CartTableComponent, CartPageComponent],
+  declarations: [CartPageComponent, CartGridComponent],
   imports: [
     CommonModule,
     CartRoutingModule,
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     CurrencyPipe,
     MatIconModule,
     MatButtonModule,
+    MatListModule,
   ],
 })
 export class CartModule {

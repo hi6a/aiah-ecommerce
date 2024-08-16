@@ -3,7 +3,6 @@ import { Product } from '../../models/products.model';
 import { ProductsApiService } from '../../services/products/products-api.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 import { SortService } from '../../services/products/sort.service';
-import { ICartItem } from '../../../cart/models/cart.model';
 
 @Component({
   selector: 'app-products',
@@ -120,27 +119,5 @@ export class ProductsComponent implements OnInit {
   onClear() {
     this.searchValue = '';
     this.productList = this.searchlist;
-    // console.log('search list from onClear: ', this.searchlist);
-  }
-
-  ////////////////////////////CART///////////////////////////////
-  cartProducts: ICartItem[] = [];
-
-  addToCart(event: ICartItem) {
-    if ('cart' in localStorage) {
-      this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
-      let exists = this.cartProducts.find(
-        (item) => item.product.id === event.product.id
-      );
-      if (exists) {
-        exists.quantity += event.quantity;
-        // alert(exists.product.title + ' is already in your cart!');
-      } else {
-        this.cartProducts.push(event);
-      }
-    } else {
-      this.cartProducts.push(event);
-    }
-    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
   }
 }

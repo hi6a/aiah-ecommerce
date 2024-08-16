@@ -1,0 +1,60 @@
+<!-- cart-table.component.html -->
+
+<h2>You have {{ cartService.countItems() }} products in your cart</h2>
+<button mat-flat-button (click)="onClear()">Clear Cart</button>
+
+<div class="cart-header">
+  <div class="header-item">Product</div>
+  <div class="header-item">Quantity</div>
+  <div class="header-item">Price</div>
+  <div class="header-item">Delete</div>
+</div>
+
+<mat-list>
+  @for (item of cartService.cartItems(); track item; let i = $index) {
+    <mat-list-item>
+      <div class="product-info">
+        <img
+          [src]="item.product.image"
+          alt="{{ item.product.title }}"
+          class="product-image"
+        />
+        <div class="product-details">
+          <span>{{ item.product.title }}</span>
+        </div>
+        <div class="product-quantity">
+          <button
+            mat-icon-button
+            aria-label="Decrease quantity of product"
+            (click)="onDec(i)"
+          >
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          {{ item.quantity }}
+          <button
+            mat-icon-button
+            aria-label="Increase quantity of product"
+            (click)="onInc(i)"
+          >
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+        <div class="product-price">
+          {{ item.product.price * item.quantity | currency }}
+        </div>
+        <div class="product-delete">
+          <button
+            mat-icon-button
+            aria-label="Delete product"
+            (click)="onRemove(i)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-list-item>
+  }
+</mat-list>
+
+<h3>Total Cost: {{ cartService.totalPrice() | currency }}</h3>
+<button mat-flat-button (click)="onOrder()">Order Now</button>

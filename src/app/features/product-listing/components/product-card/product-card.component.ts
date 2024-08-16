@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/products.model';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,11 +9,10 @@ import { Product } from '../../models/products.model';
 })
 export class ProductCardComponent {
   @Input() productData!: Product;
-  @Output() product = new EventEmitter();
-  quantity: number = 1;
+
+  constructor(private cartService: CartService) {}
 
   add() {
-    this.product.emit({ product: this.productData, quantity: this.quantity });
-    // console.log('clicked button in card');
+    this.cartService.addProduct(this.productData);
   }
 }
