@@ -10,15 +10,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './state/auth.reducers';
 import { AuthEffect } from './state/auth.effects';
 import { UserAuthService } from './services/user-login.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { AuthinterceptorsService } from './services/authinterceptors.service';
-
+import { tokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignupComponent
-  ],
+  declarations: [LoginComponent, SignupComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -26,7 +27,14 @@ import { AuthinterceptorsService } from './services/authinterceptors.service';
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffect]),
   ],
-  providers: [ UserAuthService, 
-    { provide: HTTP_INTERCEPTORS, useClass: AuthinterceptorsService, multi: true }],
+  providers: [
+    UserAuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthinterceptorsService,
+      multi: true,
+    },
+    provideHttpClient(withInterceptors([tokenInterceptor])),
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

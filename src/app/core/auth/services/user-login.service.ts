@@ -4,29 +4,27 @@ import { HttpClient } from '@angular/common/http';
 import { ILoginRequest, ILoginResponse } from '../models/auth.model';
 import { Observable, tap } from 'rxjs';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserAuthService {
-
-  constructor(private http: HttpClient) { }
-
-
+  constructor(private http: HttpClient) {}
 
   login(req: ILoginRequest): Observable<ILoginResponse> {
     const loginURL = `${environment.authURL}User/Login()`;
-    return this.http.post<ILoginResponse>(loginURL, req).pipe(
-      tap(response => console.log('API Response:', response)));
-  }
-  
-  isLoggedIn(){
-    return localStorage.getItem('user')!=null;
+    return this.http
+      .post<ILoginResponse>(loginURL, req)
+      .pipe(tap((response) => console.log('API Response:', response)));
   }
 
-  // getToken(){
-  //   return localStorage.getItem('token')||'';
+  // isLoggedIn() {
+  //   return localStorage.getItem('user') != null;
   // }
 
-
+  refresh(refreshToken: string): Observable<string> {
+    return this.http.post<string>(
+      `${environment.authURL}User/RefreshToken()`,
+      refreshToken
+    );
+  }
 }

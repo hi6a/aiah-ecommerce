@@ -46,25 +46,4 @@ export class AuthEffect {
       ),
     { dispatch: false }
   );
-
-  // loginEffect = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(login),
-  //     switchMap(({loginCreds}) =>
-
-  //       this.api.login(loginCreds).pipe(
-  //         map((res) =>
-  //         loginSuccess({loginRes: res, username: loginCreds.username})),
-  //         catchError((error: {message: string}) =>
-  //           of(
-  //             loginFailure({
-  //               error: 'Login failed',
-  //             })
-  //           ))
-  //         )
-  //       )
-
-  //     )
-
-  //   );
 }

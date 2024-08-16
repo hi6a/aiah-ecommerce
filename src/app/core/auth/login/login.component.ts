@@ -16,9 +16,6 @@ import { GenerateUserIdService } from '../services/generate-user-id.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  // isLoggedIn$!: Observable<boolean>;
-  // user$!: Observable<{ email: string | null; token: string | null }>;
-
   loginForm: FormGroup;
 
   constructor(
@@ -54,24 +51,4 @@ export class LoginComponent {
       )
       .subscribe(noop, () => alert('Login Failed'));
   }
-
-  // onSubmit() {
-  //   if (this.loginForm.valid) {
-  //     console.log('Form submitted', this.loginForm.value);
-  //     const loginCreds: ILoginRequest = this.loginForm.value;
-  //     this.store.dispatch(login({loginCreds}));
-
-  // }
-  // }
-
-  // if (this.loginForm.valid) {
-  //   console.log('Form submitted', this.loginForm.value);
-  //   this.auth.login(this.loginForm.value).subscribe((res: iSignInResponse) => {
-  //   localStorage.setItem('token', res.Login.AccessToken)
-  //   this.router.navigate(['']);
-  //   })
-
-  // } else {
-  //   console.log('Form is invalid');
-  // }
 }

@@ -6,7 +6,7 @@
       <button
         routerLink="/cart"
         mat-icon-button
-        [matBadge]="cart.countItems()"
+        [matBadge]="(isLoggedIn$ | async) ? cart.countItems() : ''"
         matBadgeColor="primary"
         matBadgePosition="above after"
       >
@@ -22,14 +22,28 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>perm_identity</mat-icon>
-          <span>Profile</span>
-        </button>
-        <button mat-menu-item (click)="onLogout()">
-          <mat-icon>input</mat-icon>
-          <span>Logout</span>
-        </button>
+        <ng-container>
+          @if (isLoggedIn$ | async) {
+            <button mat-menu-item>
+              <mat-icon>perm_identity</mat-icon>
+              <span>Profile</span>
+            </button>
+          }
+        </ng-container>
+        <ng-container>
+          @if (isLoggedIn$ | async) {
+            <button mat-menu-item (click)="onLogout()">
+              <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
+            </button>
+          }
+        </ng-container>
+        <ng-container>
+          @if (isLoggedOut$ | async) {
+            <button mat-menu-item routerLink="/login">
+              <span>Login</span>
+            </button>
+          }
+        </ng-container>
       </mat-menu>
     </li>
   </ul>

@@ -6,13 +6,16 @@ import { HomeComponent } from './features/home-page/home/home.component';
 import { ProductDetailsComponent } from './features/product-listing/components/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   {
     path: 'products',
     component: ProductsComponent,
     canActivate: [authGuard],
   },
-  { path: 'products/details/:id', component: ProductDetailsComponent },
+  {
+    path: 'products/details/:id',
+    component: ProductDetailsComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'login',
     loadChildren: () =>
@@ -22,7 +25,9 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () =>
       import('./features/cart/cart.module').then((m) => m.CartModule),
+    canActivate: [authGuard],
   },
+  { path: '', component: HomeComponent },
 ];
 
 @NgModule({
