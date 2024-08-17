@@ -1,9 +1,9 @@
 .shop-header {
-  margin: 3em 5em;
+  padding: 60px 10% 0;
 }
 .title {
-  font-size: 5em;
-  margin: 0;
+  margin: 0 1rem;
+  font-weight: 500;
   margin-bottom: 30px;
 }
 
@@ -27,16 +27,20 @@
   bottom: -25px;
 }
 
+// .products-list {
+//   margin: 0 8em;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: flex-start;
+//   gap: 4.3em;
+// }
 .products-list {
-  margin: 0 8em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 4.3em;
-}
-
-.card {
-  // margin: 30px;
-  display: inline-block;
+  padding: 50px 12% 90px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  // grid-auto-rows: minmax(100px, 500px);
+  justify-content: space-between;
+  gap: 5rem;
+  align-items: center;
 }

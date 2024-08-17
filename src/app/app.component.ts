@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthState } from './core/auth/state/auth.reducers';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logout } from './core/auth/state/auth.actions';
+import { AuthState } from './core/auth/state/auth.reducers';
+import { refresh } from './core/auth/state/auth.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  constructor(private router: Router,
-    private store: Store<AuthState>) {
+export class AppComponent implements OnInit {
+  constructor(private store: Store<AuthState>) {}
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('user')!);
 
-}
+    if (user) {
+      this.store.dispatch(
+        refresh({
+          email: user.email,
+          token: user.token,
+          userId: user.userId,
+        })
+      );
+    }
+  }
   title = 'final-project';
- 
 }

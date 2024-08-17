@@ -37,4 +37,8 @@ import { tokenInterceptor } from './services/token.interceptor';
     provideHttpClient(withInterceptors([tokenInterceptor])),
   ],
 })
-export class AuthModule {}
+export class AuthModule {
+  constructor() {
+    console.log('loaded module auth');
+  }
+}

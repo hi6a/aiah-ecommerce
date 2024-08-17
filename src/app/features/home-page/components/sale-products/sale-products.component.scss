@@ -1,0 +1,40 @@
+@import '../../../../../styles/buttons';
+
+.sale-poster {
+  padding: 100px 5% 70px;
+  background-color: var(--background-color);
+  background-size: cover;
+  min-height: 25vh;
+}
+
+.poster-text h1,
+h2,
+h3 {
+  margin: 0;
+}
+.poster-text h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.see-all-btn {
+  margin-top: 3rem;
+  border-style: none;
+  @include button-default(8rem, 3rem);
+  font-size: 1rem;
+}
+.sale-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  gap: 4rem;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.product {
+  background-color: var(--background-color);
+}
+
+span {
+  color: var(--accent-color);
+}

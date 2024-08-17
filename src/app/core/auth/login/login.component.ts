@@ -5,7 +5,7 @@ import { ILoginRequest, ILoginResponse } from '../models/auth.model';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { login } from '../state/auth.actions';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthState } from '../state/auth.reducers';
 import { tap, noop } from 'rxjs';
 import { GenerateUserIdService } from '../services/generate-user-id.service';
@@ -46,9 +46,16 @@ export class LoginComponent {
               userId: this.generateID.stringToHex(val.username),
             })
           );
-          this.router.navigate(['/products']);
+          this.router.navigate(['']);
+        }),
+        catchError((err) => {
+          console.error('Login error:', err);
+          alert('Login Failed');
+          return throwError(err); // Ensure the error is propagated if necessary
         })
       )
-      .subscribe(noop, () => alert('Login Failed'));
+      .subscribe({
+        error: (err) => console.error('Subscription error:', err),
+      });
   }
 }

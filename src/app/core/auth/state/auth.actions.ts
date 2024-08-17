@@ -10,3 +10,8 @@ export const login = createAction(
 );
 
 export const logout = createAction('[Nav Component] Logout');
+
+export const refresh = createAction(
+  '[Application] Refresh',
+  props<{ email: string; token: string; userId: number }>()
+);

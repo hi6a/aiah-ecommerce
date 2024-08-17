@@ -11,39 +11,30 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   // let refreshService = inject(UserAuthService);
   const router = inject(Router);
   const store = inject(Store<AuthState>);
-  const userString = localStorage.getItem('user');
-  if (!userString) {
+  const user = JSON.parse(localStorage.getItem('user')!);
+  if (!user) {
+    alert(`there is no user in local storage`);
+    store.dispatch(logout());
     return next(req);
   }
-  const user = JSON.parse(userString);
+
   const token = user.token;
+
   if (token) {
+    console.log('token: ', token);
     const decodedToken = jwtDecode(token);
     const isExpired =
       decodedToken && decodedToken.exp
         ? decodedToken.exp * 1000 < Date.now()
         : false;
     if (isExpired) {
-      // refreshService.refresh(token).subscribe((newToken: string) => {
-      //   localStorage.setItem(
-      //     'user',
-      //     JSON.stringify({ ...user, token: newToken })
-      //   );
-      //   let newReq = req.clone({
-      //     setHeaders: { Authorization: 'Bearer ' + newToken },
-      //   });
-      //   return next(newReq);
-      // });
-      // localStorage.removeItem('user');
-      // router.navigateByUrl('/login');
-
+      alert(`Session expired!`);
       store.dispatch(logout());
     } else {
-      alert(`Token not expired`);
+      // alert(`Token not expired`);
     }
   } else {
-    alert(`Token not found`);
-    localStorage.removeItem('user');
+    console.log(`Token not found`);
     router.navigateByUrl('/login');
   }
   return next(req);

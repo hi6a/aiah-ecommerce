@@ -1,0 +1,32 @@
+@import '../../../../../styles/buttons';
+section {
+  padding: 3% 12% 0;
+}
+.home {
+  padding: 80px 12% 90px;
+  height: 28vh;
+  width: auto;
+
+  background-image: url(../../../../../assets/cover-page.jpg);
+  background-color: var(--background-color);
+  background-size: 90%;
+
+  background-repeat: no-repeat;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.discover-btn {
+  border-style: none;
+  @include button-default(15.5rem, 3rem);
+  font-size: larger;
+  font-weight: bolder;
+  padding: 0 1.5rem;
+}
+
+span {
+  color: var(--accent-color);
+}

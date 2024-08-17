@@ -14,25 +14,27 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-    declarations: [
-        ProductCardComponent,
-        ProductsComponent,
-        InitialUpperPipe,
-        ProductDetailsComponent,
-    ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        MatDividerModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatButtonModule,
-        FormsModule,
-        RouterModule,
-    ],
-    exports: [ProductCardComponent, ProductsComponent],
+  declarations: [
+    ProductCardComponent,
+    ProductsComponent,
+    InitialUpperPipe,
+    ProductDetailsComponent,
+  ],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    MatDividerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    RouterModule,
+    SharedModule,
+  ],
+  exports: [ProductCardComponent, ProductsComponent],
 })
 export class ProductListingModule {}

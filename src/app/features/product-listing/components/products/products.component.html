@@ -1,5 +1,5 @@
 <div class="shop-header">
-  <p class="title">Shop</p>
+  <h1 class="title">Shop</h1>
 
   <div class="products-action">
     <div class="filter">
@@ -59,7 +59,12 @@
 
 <div class="products-list">
   <!-- @for (product of productList; track: product){ -->
-
+  <!-- <app-view-card
+    class="card"
+    *ngFor="let product of productList"
+    [productData]="product"
+  >
+  </app-view-card> -->
   <app-product-card
     class="card"
     *ngFor="let product of productList"

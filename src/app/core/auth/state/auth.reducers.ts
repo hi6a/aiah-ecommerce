@@ -30,5 +30,13 @@ export const authReducer = createReducer(
     return {
       ...initialAuthState,
     };
+  }),
+  on(AuthActions.refresh, (state, action) => {
+    return {
+      ...state,
+      email: action.email,
+      token: action.token,
+      userId: action.userId,
+    };
   })
 );

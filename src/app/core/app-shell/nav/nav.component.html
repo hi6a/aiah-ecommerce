@@ -1,51 +1,61 @@
 <nav>
-  <ul>
+  <ul class="links">
+    <li><a routerLink="" class="active">Home</a></li>
     <li><a routerLink="/products">Products</a></li>
-    <h4>Cute Logo <3</h4>
-    <li>
-      <button
-        routerLink="/cart"
-        mat-icon-button
-        [matBadge]="(isLoggedIn$ | async) ? cart.countItems() : ''"
-        matBadgeColor="primary"
-        matBadgePosition="above after"
-      >
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
-    </li>
-    <li>
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="Profile Icon"
-      >
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <ng-container>
-          @if (isLoggedIn$ | async) {
-            <button mat-menu-item>
-              <mat-icon>perm_identity</mat-icon>
-              <span>Profile</span>
-            </button>
-          }
-        </ng-container>
-        <ng-container>
-          @if (isLoggedIn$ | async) {
-            <button mat-menu-item (click)="onLogout()">
-              <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
-            </button>
-          }
-        </ng-container>
-        <ng-container>
-          @if (isLoggedOut$ | async) {
-            <button mat-menu-item routerLink="/login">
-              <span>Login</span>
-            </button>
-          }
-        </ng-container>
-      </mat-menu>
-    </li>
+    <li><a href="#about-us">About us</a></li>
   </ul>
-  <mat-divider></mat-divider>
+  <div class="logo" routerLink="">Cute Logo <3</div>
+  <div class="icons">
+    <button
+      routerLink="/cart"
+      mat-icon-button
+      [matBadge]="(isLoggedIn$ | async) ? cart.countItems() : ''"
+      matBadgeColor="primary"
+      matBadgePosition="above after"
+    >
+      <mat-icon fontSet="material-icons-outlined">shopping_cart</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      matBadgeColor="primary"
+      matBadgePosition="above after"
+    >
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Profile Icon"
+    >
+      <mat-icon fontSet="material-icons-outlined">account_circle</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <ng-container>
+        @if (isLoggedIn$ | async) {
+          <button mat-menu-item>
+            <mat-icon>perm_identity</mat-icon>
+            <span>Profile</span>
+          </button>
+        }
+      </ng-container>
+      <ng-container>
+        @if (isLoggedIn$ | async) {
+          <button mat-menu-item (click)="onLogout()">
+            <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
+          </button>
+        }
+      </ng-container>
+      <ng-container>
+        @if (isLoggedOut$ | async) {
+          <button mat-menu-item routerLink="/login">
+            <span>Login</span>
+          </button>
+        }
+      </ng-container>
+    </mat-menu>
+  </div>
 </nav>
+<mat-divider></mat-divider>

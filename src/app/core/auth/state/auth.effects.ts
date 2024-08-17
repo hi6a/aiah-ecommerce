@@ -46,4 +46,16 @@ export class AuthEffect {
       ),
     { dispatch: false }
   );
+
+  // refresh$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(AuthActions.refresh),
+  //       tap((action) => {
+
+  //         this.router.navigateByUrl('/login');
+  //       })
+  //     ),
+  //   { dispatch: false }
+  // );
 }

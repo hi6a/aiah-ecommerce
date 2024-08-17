@@ -8,7 +8,7 @@ import { authReducer } from './core/auth/state/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffect } from './core/auth/state/auth.effects';
 import { AuthModule } from './core/auth/auth.module';
-import { HomeModule } from './features/home-page/home/home.module';
+import { HomeModule } from './features/home-page/home.module';
 import { NavComponent } from './core/app-shell/nav/nav.component';
 import { FooterComponent } from './core/app-shell/footer/footer.component';
 import { ShellComponent } from './core/app-shell/shell/shell.component';
@@ -19,6 +19,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { SharedModule } from './shared/shared.module';
+import { CoverComponent } from './features/home-page/components/cover/cover.component';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],
@@ -36,6 +38,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    SharedModule,
   ],
 
   bootstrap: [AppComponent],

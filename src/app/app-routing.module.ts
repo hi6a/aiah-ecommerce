@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './features/product-listing/components/products/products.component';
 import { authGuard } from './core/auth/services/auth.guard';
-import { HomeComponent } from './features/home-page/home/home.component';
+import { HomeComponent } from './features/home-page/components/home/home.component';
 import { ProductDetailsComponent } from './features/product-listing/components/product-details/product-details.component';
 
 const routes: Routes = [
