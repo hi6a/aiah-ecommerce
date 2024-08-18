@@ -7,6 +7,13 @@ import { ProductDetailsComponent } from './features/product-listing/components/p
 
 const routes: Routes = [
   {
+    path: 'profile',
+    loadChildren: () =>
+      import('./features/profile/profile-routing.module').then(
+        (m) => m.ProfileRoutingModule
+      ),
+  },
+  {
     path: 'products',
     component: ProductsComponent,
     canActivate: [authGuard],
@@ -27,6 +34,7 @@ const routes: Routes = [
       import('./features/cart/cart.module').then((m) => m.CartModule),
     canActivate: [authGuard],
   },
+
   { path: '', component: HomeComponent },
 ];
 

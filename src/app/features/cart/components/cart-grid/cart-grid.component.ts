@@ -45,8 +45,10 @@ export class CartGridComponent {
       alert(`Please add items to your cart!`);
     } else {
       this.cartService.placeOrder(this.finalPrice);
-      this.isValid = false;
+
       this.finalPrice = 0;
+      this.discountCode = '';
+      this.showMessage = this.isValid = this.showTotal = false;
     }
   }
 

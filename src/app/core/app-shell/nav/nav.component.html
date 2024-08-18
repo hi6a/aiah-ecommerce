@@ -35,7 +35,7 @@
     <mat-menu #menu="matMenu">
       <ng-container>
         @if (isLoggedIn$ | async) {
-          <button mat-menu-item>
+          <button mat-menu-item routerLink="/profile">
             <mat-icon>perm_identity</mat-icon>
             <span>Profile</span>
           </button>
