@@ -14,10 +14,19 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'sale',
+    loadChildren: () =>
+      import('./features/sale/sale-routing.module').then(
+        (m) => m.SaleRoutingModule
+      ),
+    canActivate: [authGuard],
+  },
+  {
     path: 'products',
     component: ProductsComponent,
     canActivate: [authGuard],
   },
+
   {
     path: 'products/details/:id',
     component: ProductDetailsComponent,

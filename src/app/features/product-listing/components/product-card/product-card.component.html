@@ -1,34 +1,3 @@
-<!-- <div class="product-card">
-  <div class="img-container">
-    <img src="{{src}}" alt="{{alt}}">
-  </div>
-  <div class="product-info">
-    <p class="title" *ngIf="title">{{title}}</p>
-    <p *ngIf="price"> {{ price  | currency:'USD' }}</p>
-  </div>
-</div> -->
-<!-- 
-<div class="product-card">
-  <div class="header" routerLink="/products/details/{{ productData.id }}">
-    <div class="img-container">
-      <img
-        class="responsive-img"
-        [src]="productData.image"
-        [alt]="productData.title"
-      />
-    </div>
-    <div class="product-info">
-      <p class="title" *ngIf="productData.title">{{ productData.title }}</p>
-    </div>
-  </div>
-  <div class="footer">
-    <p class="price">{{ productData.price | currency: 'USD' }}</p>
-    <button class="add" mat-button (click)="add()">
-      <mat-icon>add_shopping_cart</mat-icon>
-    </button>
-  </div>
-</div> -->
-
 <!--   -->
 <div class="img-container" routerLink="/products/details/{{ productData.id }}">
   <img src="{{ productData.image }}" alt="{{ productData.title }}" />
@@ -37,17 +6,15 @@
   <h5>{{ productData.title }}</h5>
   <div class="inbox">
     <div class="price">
-      <p [innerHTML]="productData.price | currency: 'USD'"></p>
+      @if (isOnSale()) {
+        <p [innerHTML]="productData.price | discount: 20"></p>
+      } @else {
+        <p [innerHTML]="productData.price | currency: 'USD'"></p>
+      }
     </div>
+
     <button class="add" mat-button (click)="add()">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
-    <!-- <div class="rating"> -->
-    <!-- if condition for the nuber of star for loop from 1 to rating of prodct -->
-    <!-- <mat-icon>star</mat-icon>
-      <mat-icon>star</mat-icon>
-      <mat-icon>star</mat-icon>
-    </div> -->
   </div>
 </div>
-<!-- </div> -->

@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { DiscountPipe } from '../../shared/pipes/discount.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharedModule } from '../../shared/shared.module';
     FormsModule,
     RouterModule,
     SharedModule,
+    DiscountPipe,
   ],
   exports: [ProductCardComponent, ProductsComponent],
 })

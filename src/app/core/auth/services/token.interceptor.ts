@@ -8,7 +8,7 @@ import { logout } from '../state/auth.actions';
 import { AuthState } from '../state/auth.reducers';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  // let refreshService = inject(UserAuthService);
+  let refreshService = inject(UserAuthService);
   const router = inject(Router);
   const store = inject(Store<AuthState>);
   const user = JSON.parse(localStorage.getItem('user')!);
@@ -27,6 +27,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
       decodedToken && decodedToken.exp
         ? decodedToken.exp * 1000 < Date.now()
         : false;
+
     if (isExpired) {
       alert(`Session expired!`);
       store.dispatch(logout());

@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({
   name: 'discount',
+  standalone: true,
 })
 export class DiscountPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}

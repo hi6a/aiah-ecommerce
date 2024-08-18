@@ -20,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { SharedModule } from './shared/shared.module';
-import { ProfileInfoComponent } from './features/profile/components/profile-info/profile-info.component';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],

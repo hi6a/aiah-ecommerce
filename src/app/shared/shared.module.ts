@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DiscountPipe } from './pipes/discount.pipe';
 import { RouterModule } from '@angular/router';
 @NgModule({
-  declarations: [ViewCardComponent, DiscountPipe],
+  declarations: [],
   imports: [
     CommonModule,
     MatCardModule,
@@ -15,6 +15,6 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     RouterModule,
   ],
-  exports: [ViewCardComponent, DiscountPipe],
+  exports: [],
 })
 export class SharedModule {}

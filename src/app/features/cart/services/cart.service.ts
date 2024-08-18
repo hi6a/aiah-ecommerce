@@ -17,6 +17,7 @@ export class CartService {
       this.cartItems.set(JSON.parse(storedCart));
     }
 
+    //whenevr the signal changes, the cache updates
     effect(() => {
       const cartState = this.cartItems();
       localStorage.setItem('cart', JSON.stringify(cartState));

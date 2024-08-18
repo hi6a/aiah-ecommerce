@@ -1,0 +1,17 @@
+.sale-header {
+  padding: 60px 10% 0;
+}
+.title {
+  margin: 0 1rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.product-list {
+  padding: 60px 10% 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  justify-content: flex-start;
+  gap: 5rem;
+  align-items: center;
+}

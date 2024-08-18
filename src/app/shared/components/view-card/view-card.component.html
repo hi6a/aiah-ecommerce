@@ -1,38 +1,14 @@
-<!-- <div class="view-card">
-  <div class="header">
-    <div class="img-container">
-      <img
-        class="responsive-img"
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      />
-    </div>
-    <div class="view-info">
-      <p class="title">title</p>
-
-      <p class="price">price</p>
-    </div>
-  </div>
-  <div class="actions">
-    <button mat-flat-button class="add-btn">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
-  </div>
-</div> -->
-<!-- 
-<div class="box">
-  <div class="img-container">
-    <img src="{{ productData.image }}" alt="{{ productData.title }}" />
-  </div>
+<div class="img-container" routerLink="/products/details/{{ productData.id }}">
+  <img src="{{ productData.image }}" alt="{{ productData.title }}" />
+</div>
+<div class="product-info">
   <h5>{{ productData.title }}</h5>
   <div class="inbox">
     <div class="price">
       <p [innerHTML]="productData.price | discount: 20"></p>
-    </div> -->
-<!-- <div class="rating"> -->
-<!-- if condition for the nuber of star for loop from 1 to rating of prodct -->
-<!-- <mat-icon>star</mat-icon>
-      <mat-icon>star</mat-icon>
-      <mat-icon>star</mat-icon>
-    </div> -->
-<!-- </div>
-</div> -->
+    </div>
+    <button class="add" mat-button (click)="add()">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </div>
+</div>
