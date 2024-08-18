@@ -1,16 +1,26 @@
 <div class="product-details-container">
-  <div class="product-image">
-    <!-- <img [src]="product.image" alt="{{ product.title }}" /> -->
-  </div>
-  <div class="product-info">
-    @if(product){
-    <h1 class="product-title">{{product.title}}</h1>
-    <p class="product-description">{{product.description}}</p>
-    <p class="product-price">{{product.price | currency:'USD'}}</p>
-    <p class="product-rating">{{product.rating.rate}}</p>
-    <button class="add-to-cart" 
-  
-    >Add to Cart</button>
-    }
-  </div>
+  @if (product) {
+    <div class="product-image">
+      <img [src]="product.image" alt="{{ product.title }}" />
+    </div>
+    <div class="product-info">
+      <h3 class="title">{{ product.title }}</h3>
+      <p class="description">{{ product.description }}</p>
+      <p class="price">{{ product.price | currency: 'USD' }}</p>
+      <div class="rating">
+        @for (number of stars; track number) {
+          <mat-icon>star</mat-icon>
+        }
+        @if (isHalf) {
+          <mat-icon>star_half</mat-icon>
+        }
+        @if (remaining.length > 0) {
+          @for (number of remaining; track number) {
+            <mat-icon>star_border</mat-icon>
+          }
+        }
+      </div>
+      <button class="add-btn" (click)="add()">Add to Cart</button>
+    </div>
+  }
 </div>

@@ -38,9 +38,10 @@
 .products-list {
   padding: 50px 12% 90px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-rows: 400px;
   // grid-auto-rows: minmax(100px, 500px);
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 5rem;
   align-items: center;
 }

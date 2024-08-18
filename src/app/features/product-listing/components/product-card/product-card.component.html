@@ -29,20 +29,25 @@
   </div>
 </div> -->
 
-<!-- <div class="box"> -->
+<!--   -->
 <div class="img-container" routerLink="/products/details/{{ productData.id }}">
   <img src="{{ productData.image }}" alt="{{ productData.title }}" />
 </div>
-<h5>{{ productData.title }}</h5>
-<div class="inbox">
-  <div class="price">
-    <p [innerHTML]="productData.price | currency: 'USD'"></p>
-  </div>
-  <!-- <div class="rating"> -->
-  <!-- if condition for the nuber of star for loop from 1 to rating of prodct -->
-  <!-- <mat-icon>star</mat-icon>
+<div class="product-info">
+  <h5>{{ productData.title }}</h5>
+  <div class="inbox">
+    <div class="price">
+      <p [innerHTML]="productData.price | currency: 'USD'"></p>
+    </div>
+    <button class="add" mat-button (click)="add()">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+    <!-- <div class="rating"> -->
+    <!-- if condition for the nuber of star for loop from 1 to rating of prodct -->
+    <!-- <mat-icon>star</mat-icon>
       <mat-icon>star</mat-icon>
       <mat-icon>star</mat-icon>
     </div> -->
+  </div>
 </div>
 <!-- </div> -->

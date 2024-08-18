@@ -70,12 +70,29 @@ export class CartService {
     );
   }
 
+  checkStock(index: number) {
+    this.cartItems.update((currentCartItems) => {
+      if (index >= 0 && index < currentCartItems.length) {
+        const item = currentCartItems[index];
+        if (item.quantity >= item.product.rating.count) {
+          alert(`You reached maximum amount of ${item.product.title}`);
+          return currentCartItems.map((currentItem, currentIndex) =>
+            currentIndex === index
+              ? { ...item, quantity: item.product.rating.count }
+              : currentItem
+          );
+        }
+      }
+      return currentCartItems;
+    });
+  }
+
   incQuantity(index: number) {
     this.cartItems.update((currentCartItems) => {
       if (index >= 0 && index < currentCartItems.length) {
         const item = currentCartItems[index];
         if (item.quantity >= item.product.rating.count) {
-          alert(`${item.product.title} is out of stock!`);
+          alert(`You reached maximum amount of ${item.product.title}`);
           return currentCartItems;
         }
 
@@ -113,7 +130,7 @@ export class CartService {
     this.cartItems.set([]);
   }
 
-  placeOrder() {
+  placeOrder(finalPrice: number) {
     const products = this.cartItems().map((item) => ({
       productId: item.product.id,
       productQuantity: item.quantity,
@@ -129,7 +146,7 @@ export class CartService {
       console.log('ordered boolean: ', this.ordered);
     });
 
-    this.logOrder(user.userId, orderModel);
+    this.logOrder(user.userId, orderModel, finalPrice);
     this.clearCart();
 
     alert('Your order has been successfully sent!');
@@ -137,7 +154,7 @@ export class CartService {
     console.log(orderModel);
   }
 
-  logOrder(userId: number, orderModel: IOrderModel) {
+  logOrder(userId: number, orderModel: IOrderModel, finalPrice: number) {
     let orderNum: number;
     let prevOrders: IUserCartLog[] = [];
 
@@ -150,6 +167,7 @@ export class CartService {
     let log: IUserCartLog = {
       order: orderModel,
       orderId: orderNum,
+      totalPrice: finalPrice,
     };
     prevOrders.push(log);
 

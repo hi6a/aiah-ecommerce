@@ -9,8 +9,9 @@
   background-color: black;
 }
 .main-content {
-  margin-top: 80px;
-  padding: 1% 17% 3%;
+  height: 20vh;
+  margin-top: 3%;
+  padding: 1% 17% 1%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   gap: 2.2rem;
@@ -26,7 +27,7 @@ li {
   list-style-type: none;
   display: flex;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   transition: all 0.3s ease;
   font-size: 1rem;
 
@@ -55,7 +56,10 @@ h5 {
 .end-text {
   color: white;
   text-align: center;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 200;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
+  p {
+    margin-top: 2%;
+  }
 }

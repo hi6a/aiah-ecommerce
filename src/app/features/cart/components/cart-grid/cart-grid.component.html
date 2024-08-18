@@ -1,60 +1,125 @@
-<!-- cart-table.component.html -->
-
-<h2>You have {{ cartService.countItems() }} products in your cart</h2>
-<button mat-flat-button (click)="onClear()">Clear Cart</button>
-
 <div class="cart-header">
-  <div class="header-item">Product</div>
-  <div class="header-item">Quantity</div>
-  <div class="header-item">Price</div>
-  <div class="header-item">Delete</div>
+  <h1 class="title">Your cart</h1>
+  <mat-divider></mat-divider>
 </div>
+<div class="small-container cart-page main-table">
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
 
-<mat-list>
-  @for (item of cartService.cartItems(); track item; let i = $index) {
-    <mat-list-item>
-      <div class="product-info">
-        <img
-          [src]="item.product.image"
-          alt="{{ item.product.title }}"
-          class="product-image"
-        />
-        <div class="product-details">
-          <span>{{ item.product.title }}</span>
-        </div>
-        <div class="product-quantity">
-          <button
-            mat-icon-button
-            aria-label="Decrease quantity of product"
-            (click)="onDec(i)"
-          >
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-          {{ item.quantity }}
-          <button
-            mat-icon-button
-            aria-label="Increase quantity of product"
-            (click)="onInc(i)"
-          >
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-        <div class="product-price">
-          {{ item.product.price * item.quantity | currency }}
-        </div>
-        <div class="product-delete">
-          <button
-            mat-icon-button
-            aria-label="Delete product"
-            (click)="onRemove(i)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </div>
-    </mat-list-item>
-  }
-</mat-list>
+    @for (item of cartService.cartItems(); track item; let i = $index) {
+      <tr>
+        <td>
+          <div class="single-product-info">
+            <div class="image-container">
+              <img [src]="item.product.image" />
+            </div>
+            <div>
+              <p>{{ item.product.title }}</p>
+              <small>{{ item.product.price | currency: 'USD' }}</small>
+              <div class="product-delete">
+                <button
+                  mat-icon-button
+                  aria-label="Delete product"
+                  (click)="onRemove(i)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="product-quantity">
+            <button
+              mat-icon-button
+              aria-label="Decrease quantity of product"
+              (click)="onDec(i)"
+            >
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <input
+              class="quantity-input"
+              type="number"
+              [(ngModel)]="item.quantity"
+              (ngModelChange)="onInputQuantity(i, item.quantity)"
+            />
+            <button
+              mat-icon-button
+              aria-label="Increase quantity of product"
+              (click)="onInc(i)"
+            >
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+          </div>
+        </td>
 
-<h3>Total Cost: {{ cartService.totalPrice() | currency }}</h3>
-<button mat-flat-button (click)="onOrder()">Order Now</button>
+        <td>{{ item.product.price * item.quantity | currency }}</td>
+      </tr>
+    }
+    <tr class="remove-cart">
+      <td></td>
+      <td>
+        <small
+          >You have <span>{{ cartService.countItems() }}</span> products in your
+          cart</small
+        >
+      </td>
+      <td>
+        @if (cartService.countItems() != 0) {
+          <button mat-flat-button (click)="onClear()">
+            <mat-icon>delete_outline</mat-icon> Clear Cart
+          </button>
+        }
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Subtotal</td>
+      <td>{{ cartService.totalPrice() | currency }}</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>Discount code</td>
+      <td>
+        <div class="discount-container">
+          <input
+            class="discount-input"
+            type="text"
+            placeholder="enter discount code"
+            (input)="checkCode()"
+            [(ngModel)]="discountCode"
+            (keyup.enter)="onDiscount()"
+          />
+
+          @if (showMessage) {
+            <small>This discount code is invalid</small>
+          }
+          @if (showTotal) {
+            <small
+              >You saved {{ cartService.totalPrice() * 0.1 | currency }}</small
+            >
+          }
+        </div>
+      </td>
+    </tr>
+    @if (showTotal) {
+      <tr class="total-price-row">
+        <td>'</td>
+        <td>Total</td>
+        <td>{{ finalPrice | currency }}</td>
+      </tr>
+    }
+    <tr class="checkout">
+      <td></td>
+      <td></td>
+      <td>
+        <button mat-flat-button (click)="onOrder()">Checkout</button>
+      </td>
+    </tr>
+  </table>
+</div>

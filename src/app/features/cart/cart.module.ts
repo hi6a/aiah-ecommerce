@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CartGridComponent } from './components/cart-grid/cart-grid.component';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [CartPageComponent, CartGridComponent],
@@ -19,6 +22,9 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
 })
 export class CartModule {
