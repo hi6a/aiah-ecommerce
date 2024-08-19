@@ -1,0 +1,50 @@
+[
+  {
+    "id": 21,
+    "title": "Aiah Hydrating Facial Cleanser",
+    "price": 14.99,
+    "description": "A gentle, non-foaming daily face wash with hyaluronic acid and ceramides that removes dirt, oil, and makeup without disrupting the protective skin barrier.",
+    "category": "skincare",
+    "image": "assets/img1.jpeg",
+    "rating": {
+      "rate": 4.7,
+      "count": 245
+    }
+  },
+  {
+    "id": 22,
+    "title": "Aiah Hydro Boost Water Gel",
+    "price": 19.99,
+    "description": "A moisturizing gel that absorbs quickly like a gel, but has the long-lasting, intense moisturizing power of a cream.",
+    "category": "skincare",
+    "image": "assets/img2.jpeg",
+    "rating": {
+      "rate": 4.5,
+      "count": 320
+    }
+  },
+  {
+    "id": 23,
+    "title": "Aiah Niacinamide 10% + Zinc 1%",
+    "price": 6.5,
+    "description": "High-strength vitamin and mineral blemish formula with 10% pure niacinamide and 1% zinc PCA.",
+    "category": "skincare",
+    "image": "assets/img3.jpeg",
+    "rating": {
+      "rate": 4.6,
+      "count": 510
+    }
+  },
+  {
+    "id": 24,
+    "title": "Aiah Melt-in Milk Sunscreen SPF 60",
+    "price": 29.99,
+    "description": "A non-greasy, fast-absorbing sunscreen for face and body with advanced broad-spectrum SPF 60 protection.",
+    "category": "skincare",
+    "image": "assets/img4.jpeg",
+    "rating": {
+      "rate": 4.8,
+      "count": 220
+    }
+  }
+]

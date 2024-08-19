@@ -14,7 +14,7 @@
         @if (isHalf) {
           <mat-icon>star_half</mat-icon>
         }
-        @if (remaining.length > 0) {
+        @if (remaining && remaining.length > 0) {
           @for (number of remaining; track number) {
             <mat-icon>star_border</mat-icon>
           }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsApiService } from '../../services/products/products-api.service';
+import { ProductsApiService } from '../../services/products-api.service';
 import { Product } from '../../models/products.model';
 import { CartService } from '../../../cart/services/cart.service';
+import { NewProductsService } from '../../../../shared/services/new-products.service';
 
 @Component({
   selector: 'app-product-details',
@@ -18,14 +19,29 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private productsService: ProductsApiService,
-    private cartService: CartService
+    private cartService: CartService,
+    private aiah: NewProductsService
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
     console.log(this.id);
   }
 
   ngOnInit(): void {
-    this.getProduct();
+    if (this.id > 20) {
+      this.getAiahProduct();
+    } else this.getProduct();
+  }
+
+  getAiahProduct() {
+    this.aiah.getAiahById(Number(this.id)).subscribe((product) => {
+      if (product) {
+        this.product = product;
+        this.getRating(this.product.rating.rate);
+        console.log('Found product:', product);
+      } else {
+        console.log('Product not found.');
+      }
+    });
   }
   getProduct() {
     this.productsService.getProductById(this.id).subscribe({

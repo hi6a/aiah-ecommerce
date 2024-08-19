@@ -1,76 +1,66 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../../env/env.dev';
+import { environment } from '../../../../env/env.dev';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../../models/products.model';
+import { Product } from '../models/products.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SortService {
+  constructor() {}
 
-
-  constructor() { }
-
-  
-  sortAlph(products: Product[], order: 'asc' | 'desc'): void{
-    if(order=='asc'){
+  sortAlph(products: Product[], order: 'asc' | 'desc'): void {
+    if (order == 'asc') {
       products.sort((a, b) => a.title.localeCompare(b.title));
-    }
-    else{
+    } else {
       products.sort((a, b) => b.title.localeCompare(a.title));
     }
   }
 
-
-  sortPrice(products: Product[], order: 'asc' | 'desc'): void{
-    if(order=='asc'){
+  sortPrice(products: Product[], order: 'asc' | 'desc'): void {
+    if (order == 'asc') {
       products.sort((a, b) => a.price - b.price);
-    }
-    else{
+    } else {
       products.sort((a, b) => b.price - a.price);
     }
   }
 
-  
-  sortRating(products: Product[], order: 'asc' | 'desc'): void{
-    if(order=='asc'){
+  sortRating(products: Product[], order: 'asc' | 'desc'): void {
+    if (order == 'asc') {
       products.sort((a, b) => a.rating.rate - b.rating.rate);
-    }
-    else{
+    } else {
       products.sort((a, b) => b.rating.rate - a.rating.rate);
     }
   }
 
-
-  sort(value: string,  products:Product[]):void{
+  sort(value: string, products: Product[]): void {
     switch (value) {
       case 'Ascending':
-        this.sortAlph(products,'asc');
-      break;
+        this.sortAlph(products, 'asc');
+        break;
 
       case 'Descending':
-        this.sortAlph(products,'desc');
+        this.sortAlph(products, 'desc');
         break;
 
       case 'Price Ascending':
-        this.sortPrice(products,'asc');
+        this.sortPrice(products, 'asc');
         break;
 
       case 'Price Descending':
-        this.sortPrice(products,'desc');
+        this.sortPrice(products, 'desc');
         break;
 
       case 'Rate Ascending':
-        this.sortRating(products,'asc');
+        this.sortRating(products, 'asc');
         break;
 
       case 'Rate Descending':
-        this.sortRating(products,'desc');
+        this.sortRating(products, 'desc');
         break;
-    
+
       default:
     }
   }
 }
-

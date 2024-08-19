@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DiscountPipe } from '../../pipes/discount.pipe';
+import { SaleService } from '../../../features/sale/services/sale.service';
 
 @Component({
   selector: 'app-view-card',
@@ -16,9 +17,17 @@ import { DiscountPipe } from '../../pipes/discount.pipe';
 export class ViewCardComponent {
   @Input() productData!: Product;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private saleService: SaleService
+  ) {}
 
   add() {
     this.cartService.addProduct(this.productData);
+  }
+  isOnSale(): boolean {
+    return this.saleService
+      .saleItems()
+      .some((item) => item.id === this.productData.id);
   }
 }

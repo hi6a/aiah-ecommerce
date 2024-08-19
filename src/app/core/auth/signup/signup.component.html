@@ -1,70 +1,103 @@
 <div class="signup-form">
   <h1>Signup</h1>
-  <form [formGroup]="signupForm" >
-  
+  <form [formGroup]="signupForm">
     <div class="form-control">
-      <label for="fName" >First Name: </label>
-      <input type="text" id="fName" formControlName="firstName" placeholder="John" required>
+      <label for="fName">First Name: </label>
+      <input
+        type="text"
+        id="fName"
+        formControlName="firstName"
+        placeholder="John"
+        required
+      />
       <div>
         @if (firstName?.invalid && (firstName?.touched || firstName?.dirty)) {
-        <span class="error-message">
-          @if(firstName?.errors?.['required']){
-          First name is required
-        }</span>
-      }
-      </div>
-    </div>
-  
-    <div class="form-control">
-      <label for="lName" >Last Name: </label>
-      <input type="text" id="lName" formControlName="lastName" placeholder="Smith" required>
-      <div>
-        @if (lastName?.invalid && (lastName?.touched || lastName?.dirty)) {
-        <span class="error-message" *ngIf="lastName?.errors?.['required']">Last name is required</span>}
+          <span class="error-message">
+            @if (firstName?.errors?.['required']) {
+              First name is required
+            }
+          </span>
+        }
       </div>
     </div>
 
     <div class="form-control">
-      <label for="email" >Email: </label>
-      <input type="text" id="email" formControlName="email" placeholder="Email" required>
+      <label for="lName">Last Name: </label>
+      <input
+        type="text"
+        id="lName"
+        formControlName="lastName"
+        placeholder="Smith"
+        required
+      />
       <div>
-        @if(email?.invalid && (email?.touched || email?.dirty)){
-        <span class="error-message">
-         @if(email?.errors?.['required']){
-          Email is required
-        }</span>
-        <span class="error-message">
-          @if(email?.errors?.['email']){
-          Please use a valid email
-          }</span>
-      }
+        @if (lastName?.invalid && (lastName?.touched || lastName?.dirty)) {
+          <span class="error-message" *ngIf="lastName?.errors?.['required']"
+            >Last name is required</span
+          >
+        }
       </div>
     </div>
-  
+
     <div class="form-control">
-      <label for="password" >Password: </label>
-      <input type="password" 
-      id="password" 
-      formControlName="password" 
-      placeholder="********" 
-      
-      required>
+      <label for="email">Email: </label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        placeholder="Email"
+        required
+      />
       <div>
-        @if(password?.invalid && (password?.touched || password?.dirty)){
-        <span class="error-message">
-          @if(password?.errors?.['required']){
-            Password is required
-          }</span>
-        <span class="error-message">
-          @if(password?.errors?.['minlength']){
-            Password should have at least 8 characters
-          }</span>
-      }</div>
+        @if (email?.invalid && (email?.touched || email?.dirty)) {
+          <span class="error-message">
+            @if (email?.errors?.['required']) {
+              Email is required
+            }
+          </span>
+          <span class="error-message">
+            @if (email?.errors?.['email']) {
+              Please use a valid email
+            }
+          </span>
+        }
+      </div>
     </div>
-  
+
     <div class="form-control">
-      <button type="submit" [disabled]="signupForm.invalid">Signup</button>
+      <label for="password">Password: </label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="********"
+        required
+      />
+      <div>
+        @if (password?.invalid && (password?.touched || password?.dirty)) {
+          <span class="error-message">
+            @if (password?.errors?.['required']) {
+              Password is required
+            }
+          </span>
+          <span class="error-message">
+            @if (password?.errors?.['minlength']) {
+              Password should have at least 8 characters
+            }
+          </span>
+        }
+      </div>
+    </div>
+
+    <div class="form-control">
+      <button
+        type="submit"
+        [disabled]="signupForm.invalid"
+        (click)="onSubmit()"
+      >
+        Signup
+      </button>
     </div>
   </form>
   <p>Already have an account? <a routerLink="/login"> Login here</a></p>
-  </div>
+</div>

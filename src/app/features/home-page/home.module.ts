@@ -7,6 +7,7 @@ import { JustLandedProductsComponent } from './components/just-landed-products/j
 import { CategoriesComponent } from './components/categories/categories.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SaleProductsComponent } from './components/sale-products/sale-products.component';
+import { ViewCardComponent } from '../../shared/components/view-card/view-card.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,6 @@ import { SaleProductsComponent } from './components/sale-products/sale-products.
     CategoriesComponent,
     SaleProductsComponent,
   ],
-  imports: [CommonModule, SharedModule, MatGridListModule],
+  imports: [CommonModule, SharedModule, MatGridListModule, ViewCardComponent],
 })
 export class HomeModule {}

@@ -5,7 +5,11 @@
   <h5>{{ productData.title }}</h5>
   <div class="inbox">
     <div class="price">
-      <p [innerHTML]="productData.price | discount: 20"></p>
+      @if (isOnSale()) {
+        <p [innerHTML]="productData.price | discount: 20"></p>
+      } @else {
+        <p [innerHTML]="productData.price | currency: 'USD'"></p>
+      }
     </div>
     <button class="add" mat-button (click)="add()">
       <mat-icon>add_shopping_cart</mat-icon>

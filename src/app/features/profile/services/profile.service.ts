@@ -24,12 +24,4 @@ export class ProfileService {
       return [];
     }
   }
-  getEmail(): string {
-    let user = JSON.parse(localStorage.getItem(`user`)!);
-    return user.email;
-  }
-  getUsername(): string {
-    let email = this.getEmail();
-    return email.split('@')[0];
-  }
 }

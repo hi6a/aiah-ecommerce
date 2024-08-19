@@ -13,7 +13,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const store = inject(Store<AuthState>);
   const user = JSON.parse(localStorage.getItem('user')!);
   if (!user) {
-    alert(`there is no user in local storage`);
+    // alert(`there is no user in local storage`);
     store.dispatch(logout());
     return next(req);
   }
@@ -21,7 +21,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const token = user.token;
 
   if (token) {
-    console.log('token: ', token);
     const decodedToken = jwtDecode(token);
     const isExpired =
       decodedToken && decodedToken.exp
@@ -29,13 +28,12 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
         : false;
 
     if (isExpired) {
-      alert(`Session expired!`);
+      alert(`Session expired! Please login again.`);
       store.dispatch(logout());
     } else {
       // alert(`Token not expired`);
     }
   } else {
-    console.log(`Token not found`);
     router.navigateByUrl('/login');
   }
   return next(req);
