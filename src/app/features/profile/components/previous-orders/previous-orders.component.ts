@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { IUserCartLog } from '../../../cart/models/userCartLog.model';
 import { CommonModule } from '@angular/common';
 import { MatDivider } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { PreviousOrderDetailsComponent } from '../previous-order-details/previous-order-details.component';
 import { ProfileService } from '../../services/profile.service';
+import { isLoggedIn } from '../../../../core/auth/state/auth.selector';
+import { select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-previous-orders',
@@ -19,12 +22,27 @@ import { ProfileService } from '../../services/profile.service';
   ],
 })
 export class PreviousOrdersComponent implements OnInit {
+  isLoggedIn$!: Observable<boolean>;
   previousItems!: IUserCartLog[];
   currentUser!: number;
+  selectedOrder?: number;
+  store: any;
+  constructor(
+    private profile: ProfileService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  constructor(private profile: ProfileService) {}
   ngOnInit(): void {
-    this.currentUser = this.profile.getCurrentUser();
-    this.previousItems = this.profile.getPreviousItems(this.currentUser);
+    // this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
+    if (`user` in localStorage) {
+      this.currentUser = this.profile.getCurrentUser();
+      this.previousItems = this.profile.getPreviousItems(this.currentUser);
+    }
+  }
+
+  onSelectOrder(order: number): void {
+    this.selectedOrder = order;
+    console.log('selected order: ', order);
+    this.cdr.detectChanges();
   }
 }

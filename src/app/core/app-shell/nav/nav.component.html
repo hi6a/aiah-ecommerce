@@ -1,10 +1,10 @@
 <nav>
-  <ul class="links">
-    <li><a routerLink="" class="active">Home</a></li>
-    <li><a routerLink="/products">Products</a></li>
-    <li><a routerLink="/sale">Sale</a></li>
-    <li><a href="#about-us">About us</a></li>
-  </ul>
+  <div class="links">
+    <a routerLink="" class="active">Home</a>
+    <a routerLink="/products">Products</a>
+    <a routerLink="/sale">Sale</a>
+    <a href="#about-us">About us</a>
+  </div>
   <div class="logo" routerLink="">Cute Logo <3</div>
   <div class="icons">
     <button
@@ -36,7 +36,10 @@
     <mat-menu #menu="matMenu">
       <ng-container>
         @if (isLoggedIn$ | async) {
-          <button mat-menu-item routerLink="/profile">
+          <button
+            mat-menu-item
+            [routerLink]="['/profile', { outlets: { profile: ['info'] } }]"
+          >
             <mat-icon>perm_identity</mat-icon>
             <span>Profile</span>
           </button>

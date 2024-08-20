@@ -1,24 +1,47 @@
 @import '../../../../../styles/buttons';
 
 .sale-poster {
-  padding: 100px 5% 70px;
+  // padding: 100px 5% 70px;
   background-color: var(--background-color);
   background-size: cover;
-  min-height: 25vh;
+
+  // background-image: url(../../../../../assets/Words-copy.jpeg);
+  // background-position: right;
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  background-color: #f5f1f2;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
-.poster-text h1,
-h2,
-h3 {
-  margin: 0;
+.img-container img {
+  width: 100%;
+  height: auto;
 }
-.poster-text h1 {
-  font-size: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+
+.poster-text {
+  padding-left: 10%;
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+  h1 {
+    font-size: var(--font-large);
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    span {
+      color: var(--accent-color);
+      border-bottom: solid 5px var(--accent-color);
+      font-size: var(--font-xx-large);
+    }
+  }
 }
+
 .see-all-btn {
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-style: none;
   @include button-default(8rem, 3rem);
   font-size: 1rem;
@@ -34,7 +57,36 @@ h3 {
 .product {
   background-color: var(--background-color);
 }
-
-span {
+h2 {
+  font-size: var(--font-normal);
+  span {
+    color: white;
+    background-color: black;
+    padding: 0 3px;
+  }
+}
+h3 {
   color: var(--accent-color);
+  padding: 0 5px;
+  font-size: var(--font-normal);
+  span {
+    background-color: var(--primary-color);
+  }
+}
+
+@media (max-width: 900px) {
+  .sale-poster {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+  }
+
+  .img-container {
+    order: 2;
+  }
+
+  .poster-text {
+    order: 1;
+    padding: 2rem;
+  }
 }

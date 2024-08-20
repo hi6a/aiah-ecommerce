@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { SaleService } from '../../../sale/services/sale.service';
 
 @Component({
   selector: 'app-cart-grid',
@@ -8,7 +9,10 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartGridComponent {
   discountCodes: string[] = ['lau10', 'lu10', 'ua10', 'ndu10', 'aub10'];
-  constructor(public cartService: CartService) {}
+  constructor(
+    public cartService: CartService,
+    public saleService: SaleService
+  ) {}
   discountCode = '';
   isValid: boolean = false;
   finalPrice: number = this.cartService.totalPrice();

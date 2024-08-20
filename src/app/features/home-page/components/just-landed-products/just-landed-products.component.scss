@@ -1,12 +1,13 @@
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
-  justify-content: space-between;
-  gap: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 3rem;
   align-items: center;
-  // margin-top: 5rem;
 }
 
 .product {
-  background-color: var(--background-color);
+  overflow: hidden;
+  border: solid 2px var(--warm-background-color);
+  background-color: var(--warm-background-color);
 }

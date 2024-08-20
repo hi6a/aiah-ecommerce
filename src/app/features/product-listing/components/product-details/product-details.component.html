@@ -1,12 +1,16 @@
+<div class="header">
+  <p class="title">Products > Details</p>
+</div>
+
 <div class="product-details-container">
   @if (product) {
-    <div class="product-image">
+    <div class="img-container">
       <img [src]="product.image" alt="{{ product.title }}" />
     </div>
     <div class="product-info">
       <h3 class="title">{{ product.title }}</h3>
       <p class="description">{{ product.description }}</p>
-      <p class="price">{{ product.price | currency: 'USD' }}</p>
+
       <div class="rating">
         @for (number of stars; track number) {
           <mat-icon>star</mat-icon>
@@ -20,6 +24,15 @@
           }
         }
       </div>
+      <div class="price">
+        @if (saleService.isOnSale(product.id)) {
+          <p [innerHTML]="product.price | discount: 20"></p>
+        } @else {
+          <p class="og-price">{{ product.price | currency: 'USD' }}</p>
+        }
+      </div>
+
+      <!-- <p class="price">{{ product.price | currency: 'USD' }}</p> -->
       <button class="add-btn" (click)="add()">Add to Cart</button>
     </div>
   }

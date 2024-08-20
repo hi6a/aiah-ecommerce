@@ -1,47 +1,62 @@
 nav {
-  height: 5vh;
+  height: auto;
   background-color: white;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+
   align-items: center;
-
-  gap: 1.5rem;
-  padding: 1rem 3%;
-
+  padding: 0.5rem 3%;
   position: relative;
 }
 
 .links {
   list-style-type: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0;
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: var(--font-small);
+
+    &:hover {
+      color: var(--border-color);
+    }
+
+    &:active {
+      color: var(--accent-color);
+      font-weight: bolder;
+    }
+  }
 }
-
-.links a {
-  color: var(--text-color);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--border-color);
-  }
-
-  &:active {
-    color: var(--accent-color);
-    font-weight: bolder;
-  }
+.logo {
+  font-size: var(--font-large);
+  justify-self: center;
 }
 
 .icons {
+  justify-self: flex-end;
+  align-self: flex-end;
   display: flex;
-
   gap: 0.5rem;
+
+  mat-icon {
+    font-size: var(--font-large);
+  }
+  button {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
 }
 
-.icons button {
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(0.95);
+@media (max-width: 600px) {
+  nav {
+    grid-template-columns: 1fr 1fr;
+  }
+  .links {
+    display: none;
   }
 }

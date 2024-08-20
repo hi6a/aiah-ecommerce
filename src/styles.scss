@@ -41,6 +41,7 @@ $final-project-theme: mat.define-light-theme(
 @import './styles/colors';
 @import './styles/buttons';
 @import './styles/mat_override';
+@import './styles/typography';
 
 html,
 body {

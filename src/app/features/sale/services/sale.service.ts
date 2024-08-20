@@ -9,11 +9,7 @@ import { NewProductsService } from '../../../shared/services/new-products.servic
   providedIn: 'root',
 })
 export class SaleService {
-  constructor(
-    private productService: ProductsApiService,
-    private http: HttpClient,
-    private aiah: NewProductsService
-  ) {
+  constructor(private productService: ProductsApiService) {
     this.loadSaleItems();
   }
   public saleItems = signal<Product[]>([]);
@@ -27,5 +23,9 @@ export class SaleService {
       this.saleItems.set(products);
       // console.log('sale items: ', this.saleItems());
     });
+  }
+
+  isOnSale(id: number): boolean {
+    return this.saleItems().some((item) => item.id === id);
   }
 }

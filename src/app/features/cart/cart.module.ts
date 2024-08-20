@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { DiscountPipe } from '../../shared/pipes/discount.pipe';
 
 @NgModule({
   declarations: [CartPageComponent, CartGridComponent],
@@ -25,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
+    DiscountPipe,
   ],
 })
 export class CartModule {

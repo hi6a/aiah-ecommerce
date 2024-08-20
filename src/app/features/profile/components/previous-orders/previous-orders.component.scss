@@ -20,8 +20,18 @@ span {
 
 td {
   text-align: left;
-  font-weight: 300;
+
   font-size: smaller;
+  a {
+    font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      color: var(--accent-color);
+      font-weight: 300;
+    }
+  }
 }
 
 .content td {

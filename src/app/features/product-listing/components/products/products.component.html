@@ -57,16 +57,9 @@
   <mat-divider></mat-divider>
 </div>
 
-<div class="products-list">
-  <!-- @for (product of productList; track: product){ -->
-  <!-- <app-view-card
-    class="card"
-    *ngFor="let product of productList"
-    [productData]="product"
-  >
-  </app-view-card> -->
+<div class="product-list">
   <app-product-card
-    class="card"
+    class="product"
     *ngFor="let product of productList"
     [productData]="product"
   >

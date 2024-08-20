@@ -11,20 +11,14 @@ const routes: Routes = [
     component: MainProfileComponent,
     children: [
       {
-        path: 'previous-orders',
-        component: PreviousOrdersComponent,
-        outlet: 'profile',
-        children: [
-          {
-            path: ':id',
-            component: PreviousOrderDetailsComponent,
-            outlet: 'profile',
-          },
-        ],
-      },
-      {
         path: 'info',
         component: ProfileInfoComponent,
+        outlet: 'profile',
+      },
+
+      {
+        path: 'previous-orders',
+        component: PreviousOrdersComponent,
         outlet: 'profile',
       },
     ],

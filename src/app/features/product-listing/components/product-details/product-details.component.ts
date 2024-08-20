@@ -4,6 +4,7 @@ import { ProductsApiService } from '../../services/products-api.service';
 import { Product } from '../../models/products.model';
 import { CartService } from '../../../cart/services/cart.service';
 import { NewProductsService } from '../../../../shared/services/new-products.service';
+import { SaleService } from '../../../sale/services/sale.service';
 
 @Component({
   selector: 'app-product-details',
@@ -20,7 +21,8 @@ export class ProductDetailsComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private productsService: ProductsApiService,
     private cartService: CartService,
-    private aiah: NewProductsService
+    private aiah: NewProductsService,
+    public saleService: SaleService
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
     console.log(this.id);

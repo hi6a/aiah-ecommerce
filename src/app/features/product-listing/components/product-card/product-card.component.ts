@@ -15,11 +15,7 @@ export class ProductCardComponent {
     private cartService: CartService,
     public saleService: SaleService
   ) {}
-  isOnSale(): boolean {
-    return this.saleService
-      .saleItems()
-      .some((item) => item.id === this.productData.id);
-  }
+
   add() {
     this.cartService.addProduct(this.productData);
   }

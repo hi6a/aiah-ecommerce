@@ -12,16 +12,18 @@ export class DiscountPipe implements PipeTransform {
     const html = `<div class="new-price">
      <span style="
         display: inline-block;
-        padding: 5px 1rem;
-        margin: 10px;
+       
+       
         background: transparent;
-        border: 2px solid var(--accent-color);
+  
         color: var(--accent-color);
-        font-size: 1rem;
-        font-weight: 400;">
+        font-size: var(--font-small);
+        font-weight: 500;">
         $${discountedPrice.toFixed(2)}
       </span>   
-      <span style="text-decoration: line-through; color: grey;">
+      <span style="text-decoration: line-through; color: grey;
+        font-size: var(--font-xx-small);
+        font-weight: 300; ">
         $${value.toFixed(2)}
       </span>
       </div>`;

@@ -19,7 +19,13 @@
             </div>
             <div>
               <p>{{ item.product.title }}</p>
-              <small>{{ item.product.price | currency: 'USD' }}</small>
+
+              @if (saleService.isOnSale(item.product.id)) {
+                <small [innerHTML]="item.product.price | discount: 20"></small>
+              } @else {
+                <small>{{ item.product.price | currency: 'USD' }}</small>
+              }
+
               <div class="product-delete">
                 <button
                   mat-icon-button
@@ -57,7 +63,13 @@
           </div>
         </td>
 
-        <td>{{ item.product.price * item.quantity | currency }}</td>
+        <td>
+          @if (saleService.isOnSale(item.product.id)) {
+            {{ item.product.price * 0.8 * item.quantity | currency: 'USD' }}
+          } @else {
+            {{ item.product.price | currency: 'USD' }}
+          }
+        </td>
       </tr>
     }
     <tr class="remove-cart">
