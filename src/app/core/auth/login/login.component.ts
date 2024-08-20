@@ -17,6 +17,7 @@ import { GenerateUserIdService } from '../services/generate-user-id.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  isLoginFail: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +26,6 @@ export class LoginComponent {
     private store: Store<AuthState>,
     private generateID: GenerateUserIdService
   ) {
-    // this.user$ = this.store.select(selectUser);
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -47,15 +47,25 @@ export class LoginComponent {
             })
           );
           this.router.navigate(['']);
+
+          this.isLoginFail = false;
         }),
         catchError((err) => {
           console.error('Login error:', err);
           alert('Login Failed');
-          return throwError(err); // Ensure the error is propagated if necessary
+          this.isLoginFail = true;
+          return throwError(err);
         })
       )
       .subscribe({
         error: (err) => console.error('Subscription error:', err),
       });
+  }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+  get password() {
+    return this.loginForm.get('password');
   }
 }

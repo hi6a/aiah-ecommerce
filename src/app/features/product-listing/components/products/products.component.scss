@@ -10,21 +10,22 @@
 .products-action {
   margin: 1em;
   position: relative;
-  display: block;
-}
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 
-.filter,
-.sort {
-  display: inline;
+  align-items: center;
+  .filter-sort {
+    display: inline-flex;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
 }
-.filter-option,
-.sort-option {
-  margin: 0 10px;
-}
-.search-form-field {
-  position: absolute;
-  right: 0;
-  bottom: -25px;
+@media (max-width: 900px) {
+  .products-action {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+  }
 }
 
 .product-list {
@@ -33,11 +34,15 @@
 
   gap: 3rem;
   align-items: center;
-  padding: 5% 12% 0;
+  padding: 3% 12% 0;
 }
 
 .product {
   overflow: hidden;
   border: solid 2px var(--warm-background-color);
   background-color: var(--warm-background-color);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-20px);
+  }
 }

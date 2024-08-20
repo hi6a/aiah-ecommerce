@@ -30,12 +30,29 @@ nav {
   }
 }
 .logo {
-  font-size: var(--font-large);
-  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  img {
+    max-height: 60px;
+    object-fit: contain;
+  }
+  .logo-name {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-normal);
+    font-weight: 600;
+    div {
+      height: 20px;
+    }
+  }
+  align-self: center;
 }
 
 .icons {
   justify-self: flex-end;
+
   align-self: flex-end;
   display: flex;
   gap: 0.5rem;

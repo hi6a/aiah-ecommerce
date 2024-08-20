@@ -16,6 +16,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { DiscountPipe } from '../../shared/pipes/discount.pipe';
+import { ViewCardComponent } from '../../shared/components/view-card/view-card.component';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { DiscountPipe } from '../../shared/pipes/discount.pipe';
     RouterModule,
     SharedModule,
     DiscountPipe,
+    ViewCardComponent,
+    MatSelect,
+    MatOption,
   ],
   exports: [ProductCardComponent, ProductsComponent],
 })

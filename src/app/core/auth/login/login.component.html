@@ -10,6 +10,13 @@
         placeholder="Email or Username"
         required
       />
+      @if (username?.invalid && (username?.touched || username?.dirty)) {
+        <span class="error-message">
+          @if (username?.errors?.['required']) {
+            Email is required
+          }
+        </span>
+      }
     </div>
 
     <div class="form-control">
@@ -21,6 +28,23 @@
         placeholder="********"
         required
       />
+      <div class="message-container">
+        @if (password?.invalid && (password?.touched || password?.dirty)) {
+          <span class="error-message">
+            @if (password?.errors?.['required']) {
+              Password is required
+            }
+          </span>
+        }
+        @if (password?.errors?.['minlength']) {
+          <span class="error-message"
+            >Password should be at least 8 characters long</span
+          >
+        }
+        @if (isLoginFail) {
+          <span class="error-message"> Email or password are incorrect</span>
+        }
+      </div>
     </div>
 
     <div class="form-control">

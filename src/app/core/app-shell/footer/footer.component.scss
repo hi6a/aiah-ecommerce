@@ -1,28 +1,33 @@
-// :host {
-//   padding: 100px 17% 90px;
-// }
-// div {
-//   background-color: black;
-//   color: white;
-// }
 .footer {
   background-color: black;
 }
 .main-content {
-  height: 20vh;
+  background-color: black;
+
   margin-top: 3%;
   padding: 1% 17% 1%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 2.2rem;
   align-items: flex-start;
 
-  h2 {
+  .logo {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-large);
     color: white;
     margin-top: 3rem;
   }
+  content {
+    background-color: black;
+  }
 }
-
+@media (max-width: 800px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
 li {
   list-style-type: none;
   display: flex;

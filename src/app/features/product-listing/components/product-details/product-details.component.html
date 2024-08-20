@@ -37,3 +37,18 @@
     </div>
   }
 </div>
+<div class="divider">
+  <mat-divider></mat-divider>
+</div>
+
+<div class="similar-products">
+  <h3>Find similar <span>products.</span></h3>
+  <div class="similar-products-list">
+    @for (product of similarProducts$ | async; track product) {
+      <app-view-card
+        class="product"
+        [productData]="this.product"
+      ></app-view-card>
+    }
+  </div>
+</div>

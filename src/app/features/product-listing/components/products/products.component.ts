@@ -69,9 +69,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  onCategoryChange(event: any) {
-    let value = event.target.value;
-
+  onCategoryChange(value: string) {
     if (value === 'All') {
       if (this.searchValue === '') this.productList = this.originalProductList;
       else {
@@ -108,8 +106,8 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  onSortChange(event: any) {
-    this.currentSort = event.target.value;
+  onSortChange(value: string) {
+    this.currentSort = value;
 
     this.sortService.sort(this.currentSort, this.productList);
     this.searchlist = [...this.productList];

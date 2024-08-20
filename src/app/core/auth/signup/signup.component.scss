@@ -34,14 +34,25 @@
   width: 300px;
   padding: 10px;
   box-sizing: border-box;
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue', sans-serif;
 }
 .form-control button {
   @include button-default(100%, 2rem);
   border: none;
   border-radius: 0;
 }
+.message-container {
+  width: 300px;
+  li {
+    color: var(--accent-color);
+    font-size: var(--font-xx-small);
+    max-width: 300px;
+    display: block;
+  }
+}
 .error-message {
   color: var(--accent-color);
   font-size: var(--font-xx-small);
-  width: 100%;
+  max-width: 300px;
+  display: block;
 }

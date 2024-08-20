@@ -20,4 +20,8 @@
   overflow: hidden;
   border: solid 2px var(--warm-background-color);
   background-color: var(--warm-background-color);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-20px);
+  }
 }

@@ -1,6 +1,10 @@
 <!--   -->
 <!-- <div class="box"> -->
+
 <div class="img-container" routerLink="/products/details/{{ productData.id }}">
+  @if (productData.id > 20) {
+    <div class="new-tag">NEW</div>
+  }
   <img src="{{ productData.image }}" alt="{{ productData.title }}" />
 </div>
 <div class="product-info">

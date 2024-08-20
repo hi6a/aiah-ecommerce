@@ -48,7 +48,7 @@
         placeholder="Email"
         required
       />
-      <div>
+      <div class="message-container">
         @if (email?.invalid && (email?.touched || email?.dirty)) {
           <span class="error-message">
             @if (email?.errors?.['required']) {
@@ -73,18 +73,27 @@
         placeholder="********"
         required
       />
-      <div>
+      <div class="message-container">
         @if (password?.invalid && (password?.touched || password?.dirty)) {
-          <span class="error-message">
-            @if (password?.errors?.['required']) {
-              Password is required
+          @if (password?.errors?.['required']) {
+            <li>Password is required</li>
+          } @else {
+            @if (!password?.value?.match('^(?=.*[A-Z])')) {
+              <li>Password should have at least one uppercase letter</li>
             }
-          </span>
-          <span class="error-message">
-            @if (password?.errors?.['minlength']) {
-              Password should have at least 8 characters
+            @if (!password?.value?.match('(?=.*[a-z])')) {
+              <li>Password should have at least one lowercase letter</li>
             }
-          </span>
+            @if (!password?.value?.match('(?=.*[0-9])')) {
+              <li>Password should have atleast one digit</li>
+            }
+            @if (!password?.value?.match('(?=.*[!@#$%^&*])')) {
+              <li>Password should have at least one special character</li>
+            }
+            @if (!password?.value?.match('.{8,}')) {
+              <li>Password should be at least 8 characters long</li>
+            }
+          }
         }
       </div>
     </div>

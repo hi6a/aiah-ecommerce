@@ -115,6 +115,9 @@ input[type='number'] {
   }
 }
 .discount-input {
+  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue';
+  font-size: var(--font-xx-small);
+  padding-left: 0.5rem;
   border-radius: 0;
   height: 3vh;
   &:focus {

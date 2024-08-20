@@ -69,3 +69,37 @@
     order: 2;
   }
 }
+
+.similar-products {
+  padding: 0 25%;
+  h3 {
+    font-size: var(--font-normal);
+    span {
+      color: var(--accent-color);
+    }
+  }
+}
+.similar-products-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 5%;
+  gap: 3rem;
+  align-items: center;
+}
+
+.product {
+  overflow: hidden;
+  border: solid 2px var(--warm-background-color);
+  background-color: var(--warm-background-color);
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-20px);
+  }
+}
+
+.divider {
+  padding: 3% 10%;
+  mat-divider {
+    align-self: stretch;
+  }
+}

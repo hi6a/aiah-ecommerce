@@ -13,12 +13,11 @@ import { AuthState } from '../state/auth.reducers';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
-
+  StrongPasswordRegx: RegExp =
+    /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   constructor(
     private fb: FormBuilder,
-    private auth: SignupService,
-    private router: Router,
-    private store: Store<AuthState>
+    private auth: SignupService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +25,10 @@ export class SignupComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: [
+        '',
+        [Validators.required, Validators.pattern(this.StrongPasswordRegx)],
+      ],
     });
   }
 
@@ -43,17 +45,6 @@ export class SignupComponent implements OnInit {
       console.log('form is invalid');
     }
   }
-  //     this.store.dispatch(AuthActions.login({loginCreds: this.signupForm.value}));
-  //     this.router.navigate(['/login']);
-  //     })
-  //   } else {
-  //     console.log('Form is invalid');
-  //     Object.keys(this.signupForm.controls).forEach(controlName => {
-  //       this.signupForm.controls[controlName].markAsTouched();
-  //       this.signupForm.controls[controlName].markAsDirty();
-  //     });
-  //   }
-  // }
 
   get firstName() {
     return this.signupForm.get('firstName');

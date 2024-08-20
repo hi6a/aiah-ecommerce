@@ -8,7 +8,14 @@ import { SaleService } from '../../../sale/services/sale.service';
   styleUrl: './cart-grid.component.scss',
 })
 export class CartGridComponent {
-  discountCodes: string[] = ['lau10', 'lu10', 'ua10', 'ndu10', 'aub10'];
+  discountCodes: string[] = [
+    'lau10',
+    'lu10',
+    'ua10',
+    'ndu10',
+    'aub10',
+    'inmind10',
+  ];
   constructor(
     public cartService: CartService,
     public saleService: SaleService

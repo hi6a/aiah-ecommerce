@@ -5,6 +5,8 @@ import { Product } from '../../models/products.model';
 import { CartService } from '../../../cart/services/cart.service';
 import { NewProductsService } from '../../../../shared/services/new-products.service';
 import { SaleService } from '../../../sale/services/sale.service';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,6 +14,7 @@ import { SaleService } from '../../../sale/services/sale.service';
   styleUrl: './product-details.component.scss',
 })
 export class ProductDetailsComponent implements OnInit {
+  similarProducts$!: Observable<Product[]>;
   id!: any;
   product!: Product;
   stars!: number[];
@@ -22,7 +25,8 @@ export class ProductDetailsComponent implements OnInit {
     private productsService: ProductsApiService,
     private cartService: CartService,
     private aiah: NewProductsService,
-    public saleService: SaleService
+    public saleService: SaleService,
+    private categoryService: CategoriesService
   ) {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
     console.log(this.id);
@@ -31,30 +35,49 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     if (this.id > 20) {
       this.getAiahProduct();
-    } else this.getProduct();
+      // this.similarProducts$ = this.aiah
+      //   .getAiah()
+      //   .pipe(
+      //     map((products) =>
+      //       products.filter((product) => product.id !== this.id)
+      //     )
+      //   );
+    } else {
+      this.similarProducts$ = this.productsService.getProductById(this.id).pipe(
+        tap((product) => {
+          this.product = product;
+          this.getRating(this.product.rating.rate);
+        }),
+        switchMap((product) =>
+          this.categoryService
+            .getProductsByCategory(product.category)
+            .pipe(
+              map((products) =>
+                products.filter((p) => p.id !== this.product.id)
+              )
+            )
+        )
+      );
+    }
   }
-
   getAiahProduct() {
-    this.aiah.getAiahById(Number(this.id)).subscribe((product) => {
-      if (product) {
-        this.product = product;
-        this.getRating(this.product.rating.rate);
-        console.log('Found product:', product);
-      } else {
-        console.log('Product not found.');
-      }
-    });
-  }
-  getProduct() {
-    this.productsService.getProductById(this.id).subscribe({
-      next: (res: Product) => {
-        this.product = res;
-        console.log('from get single: ', this.product);
-        this.getRating(this.product.rating.rate);
-      },
+    this.aiah.getAiahById(Number(this.id)).subscribe({
+      next: (product) => {
+        if (product) {
+          this.product = product;
+          this.getRating(this.product.rating.rate);
+          console.log('Found product:', product);
 
-      error: (err: any) => {
-        alert(err.message);
+          this.similarProducts$ = this.aiah
+            .getAiah()
+            .pipe(
+              map((products) =>
+                products.filter((p) => p.id !== this.product.id)
+              )
+            );
+        } else {
+          console.log('Product not found.');
+        }
       },
     });
   }
