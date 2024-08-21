@@ -1,4 +1,8 @@
-<div class="img-container" routerLink="/products/details/{{ productData.id }}">
+<div
+  class="img-container"
+  (click)="sendData()"
+  routerLink="/products/details/{{ productData.id }}"
+>
   <img src="{{ productData.image }}" alt="{{ productData.title }}" />
 </div>
 <div class="product-info">

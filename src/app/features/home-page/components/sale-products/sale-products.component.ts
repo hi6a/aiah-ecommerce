@@ -10,5 +10,6 @@ export class SaleProductsComponent {
   constructor(private router: Router) {}
   navigateToSale() {
     this.router.navigate(['/sale']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

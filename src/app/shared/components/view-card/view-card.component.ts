@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../features/product-listing/models/products.model';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +16,12 @@ import { SaleService } from '../../../features/sale/services/sale.service';
 })
 export class ViewCardComponent {
   @Input() productData!: Product;
+
+  @Output() newId = new EventEmitter<number>();
+
+  sendData() {
+    this.newId.emit(this.productData.id);
+  }
 
   constructor(
     private cartService: CartService,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsApiService } from '../../services/products-api.service';
 import { Product } from '../../models/products.model';
 import { CartService } from '../../../cart/services/cart.service';
@@ -26,13 +26,25 @@ export class ProductDetailsComponent implements OnInit {
     private cartService: CartService,
     private aiah: NewProductsService,
     public saleService: SaleService,
-    private categoryService: CategoriesService
-  ) {
+    private categoryService: CategoriesService,
+    private router: Router
+  ) {}
+  displayNewItem(id: number) {
+    // console.log('new item: ', id);
+    this.router.navigate(['/products/details', id]);
+
+    this.id = id;
+    // console.log(this.id);
+    this.getSimilar();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  ngOnInit(): void {
     this.id = this.activeRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+    // console.log('from oninit', this.id);
+    this.getSimilar();
   }
 
-  ngOnInit(): void {
+  getSimilar() {
     if (this.id > 20) {
       this.getAiahProduct();
     } else {
@@ -59,7 +71,7 @@ export class ProductDetailsComponent implements OnInit {
         if (product) {
           this.product = product;
           this.getRating(this.product.rating.rate);
-          console.log('Found product:', product);
+          // console.log('Found product:', product);
 
           this.similarProducts$ = this.aiah
             .getAiah()

@@ -48,5 +48,6 @@ export class CategoriesComponent {
 
   onNavigateCategory() {
     this.router.navigate(['/products']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

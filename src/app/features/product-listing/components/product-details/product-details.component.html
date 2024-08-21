@@ -46,6 +46,7 @@
   <div class="similar-products-list">
     @for (product of similarProducts$ | async; track product) {
       <app-view-card
+        (newId)="displayNewItem($event)"
         class="product"
         [productData]="this.product"
       ></app-view-card>

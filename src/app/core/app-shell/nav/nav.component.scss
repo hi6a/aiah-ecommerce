@@ -48,6 +48,9 @@ nav {
     }
   }
   align-self: center;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .icons {

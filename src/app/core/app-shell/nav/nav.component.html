@@ -24,14 +24,6 @@
       <mat-icon fontSet="material-icons-outlined">shopping_cart</mat-icon>
     </button>
 
-    <!-- <button
-      mat-icon-button
-      matBadgeColor="primary"
-      matBadgePosition="above after"
-    >
-      <mat-icon>favorite_border</mat-icon>
-    </button> -->
-
     <button
       mat-icon-button
       [matMenuTriggerFor]="menu"
@@ -54,14 +46,14 @@
       </ng-container>
       <ng-container>
         @if (isLoggedIn$ | async) {
-          <button mat-menu-item (click)="onLogout()">
+          <button aria-label="logout button" mat-menu-item (click)="onLogout()">
             <mat-icon>exit_to_app</mat-icon> <span>Logout</span>
           </button>
         }
       </ng-container>
       <ng-container>
         @if (isLoggedOut$ | async) {
-          <button mat-menu-item routerLink="/login">
+          <button aria-label="login button" mat-menu-item routerLink="/login">
             <span>Login</span>
           </button>
         }
