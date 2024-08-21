@@ -8,7 +8,6 @@ import { logout } from '../state/auth.actions';
 import { AuthState } from '../state/auth.reducers';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  let refreshService = inject(UserAuthService);
   const router = inject(Router);
   const store = inject(Store<AuthState>);
   const user = JSON.parse(localStorage.getItem('user')!);
@@ -31,7 +30,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
       alert(`Session expired! Please login again.`);
       store.dispatch(logout());
     } else {
-      // alert(`Token not expired`);
     }
   } else {
     router.navigateByUrl('/login');

@@ -20,6 +20,7 @@ export class CartGridComponent {
     public cartService: CartService,
     public saleService: SaleService
   ) {}
+
   discountCode = '';
   isValid: boolean = false;
   finalPrice: number = this.cartService.totalPrice();

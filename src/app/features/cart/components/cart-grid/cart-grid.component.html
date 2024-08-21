@@ -67,7 +67,7 @@
           @if (saleService.isOnSale(item.product.id)) {
             {{ item.product.price * 0.8 * item.quantity | currency: 'USD' }}
           } @else {
-            {{ item.product.price | currency: 'USD' }}
+            {{ item.product.price * item.quantity | currency: 'USD' }}
           }
         </td>
       </tr>

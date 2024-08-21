@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserAuthService } from '../services/user-login.service';
-import { ILoginRequest, ILoginResponse } from '../models/auth.model';
-import { Router, RouterModule } from '@angular/router';
+import { UserAuthService } from '../../services/user-login.service';
+import { ILoginRequest } from '../../models/auth.model';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login } from '../state/auth.actions';
+import { login } from '../../state/auth.actions';
 import { catchError, Observable, throwError } from 'rxjs';
-import { AuthState } from '../state/auth.reducers';
+import { AuthState } from '../../state/auth.reducers';
 import { tap, noop } from 'rxjs';
-import { GenerateUserIdService } from '../services/generate-user-id.service';
+import { GenerateUserIdService } from '../../services/generate-user-id.service';
 
 @Component({
   selector: 'app-login',

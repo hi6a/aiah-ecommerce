@@ -5,9 +5,9 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, flatMap, Observable, switchMap } from 'rxjs';
-import { UserAuthService } from './user-login.service';
-import { select, Store } from '@ngrx/store';
+import { first, Observable, switchMap } from 'rxjs';
+
+import { Store } from '@ngrx/store';
 import { AuthState } from '../state/auth.reducers';
 import { token } from '../state/auth.selector';
 
@@ -34,18 +34,3 @@ export class AuthinterceptorsService implements HttpInterceptor {
     );
   }
 }
-// const userString = localStorage.getItem('user');
-
-// console.log("userString from interceptor: ", userString)
-// if (userString) {
-//   const token = JSON.parse(userString).token;
-// console.log("token from interceptor: ", token)
-// const authReq = req.clone({
-//   headers: req.headers.set('Authorization', `Bearer ${token}`),
-//   body: req.body,
-// });
-
-//   return next.handle(authReq);
-// }
-
-// return next.handle(req);

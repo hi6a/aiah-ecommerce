@@ -6,7 +6,6 @@ import { select, Store } from '@ngrx/store';
 import { isLoggedIn } from '../state/auth.selector';
 import { tap } from 'rxjs';
 export const authGuard: CanActivateFn = (route, state) => {
-  // const auth = inject(UserAuthService);
   const router = inject(Router);
   const store = inject(Store<AuthState>);
   return store.pipe(

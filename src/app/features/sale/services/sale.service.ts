@@ -1,9 +1,7 @@
 import { Injectable, OnInit, signal } from '@angular/core';
 import { Product } from '../../product-listing/models/products.model';
 import { ProductsApiService } from '../../product-listing/services/products-api.service';
-import { forkJoin, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { NewProductsService } from '../../../shared/services/new-products.service';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

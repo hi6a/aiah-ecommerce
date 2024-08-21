@@ -35,13 +35,6 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     if (this.id > 20) {
       this.getAiahProduct();
-      // this.similarProducts$ = this.aiah
-      //   .getAiah()
-      //   .pipe(
-      //     map((products) =>
-      //       products.filter((product) => product.id !== this.id)
-      //     )
-      //   );
     } else {
       this.similarProducts$ = this.productsService.getProductById(this.id).pipe(
         tap((product) => {

@@ -12,10 +12,7 @@ export class DiscountPipe implements PipeTransform {
     const html = `<div class="new-price">
      <span style="
         display: inline-block;
-       
-       
         background: transparent;
-  
         color: var(--accent-color);
         font-size: var(--font-small);
         font-weight: 500;">

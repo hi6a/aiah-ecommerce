@@ -38,8 +38,6 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.displayProducts(),
-
     this.displayCategories();
     forkJoin([
       this.productsService.getAllProducts(),
@@ -61,7 +59,7 @@ export class ProductsComponent implements OnInit {
     this.cat.getAllCategories().subscribe({
       next: (categories: string[]) => {
         const newCategory = 'skincare';
-        this.categories = [...categories, newCategory];
+        this.categories = ['All', ...categories, newCategory];
       },
       error: (err: any) => {
         alert(err.message);
@@ -97,10 +95,7 @@ export class ProductsComponent implements OnInit {
         );
         this.sortService.sort(this.currentSort, this.productList);
         this.searchlist = [...productsByCategory];
-        // console.log(
-        //     'search list from change Cat to else: ',
-        //     this.searchlist
-        // );
+
         this.currentCategory = value;
       });
     }
@@ -121,9 +116,6 @@ export class ProductsComponent implements OnInit {
     } else {
       this.productList = this.searchlist;
     }
-
-    // console.log('search value: ', this.searchValue);
-    // console.log('search list from onSearch: ', this.searchlist);
   }
 
   onClear() {

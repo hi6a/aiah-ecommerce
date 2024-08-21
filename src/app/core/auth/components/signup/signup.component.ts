@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SignupService } from '../services/user-signup.service';
-import { Router } from '@angular/router';
-import { iSignUpResponse } from '../models/auth.model';
-import { Store } from '@ngrx/store';
-import * as AuthActions from '../state/auth.actions';
-import { AuthState } from '../state/auth.reducers';
+import { SignupService } from '../../services/user-signup.service';
+
+import { iSignUpResponse } from '../../models/auth.model';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

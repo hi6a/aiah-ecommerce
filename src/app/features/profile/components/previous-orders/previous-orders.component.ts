@@ -5,9 +5,13 @@ import { MatDivider } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { PreviousOrderDetailsComponent } from '../previous-order-details/previous-order-details.component';
 import { ProfileService } from '../../services/profile.service';
-import { isLoggedIn } from '../../../../core/auth/state/auth.selector';
-import { select } from '@ngrx/store';
+import {
+  currentUser,
+  isLoggedIn,
+} from '../../../../core/auth/state/auth.selector';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AuthState } from '../../../../core/auth/state/auth.reducers';
 
 @Component({
   selector: 'app-previous-orders',
@@ -26,14 +30,14 @@ export class PreviousOrdersComponent implements OnInit {
   previousItems!: IUserCartLog[];
   currentUser!: number;
   selectedOrder?: number;
-  store: any;
+
   constructor(
     private profile: ProfileService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private store: Store<AuthState>
   ) {}
 
   ngOnInit(): void {
-    // this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
     if (`user` in localStorage) {
       this.currentUser = this.profile.getCurrentUser();
       this.previousItems = this.profile.getPreviousItems(this.currentUser);

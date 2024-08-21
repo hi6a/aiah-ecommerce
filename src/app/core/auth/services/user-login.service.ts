@@ -17,10 +17,6 @@ export class UserAuthService {
       .pipe(tap((response) => console.log('API Response:', response)));
   }
 
-  // isLoggedIn() {
-  //   return localStorage.getItem('user') != null;
-  // }
-
   refresh(refreshToken: string): Observable<string> {
     return this.http.post<string>(
       `${environment.authURL}User/RefreshToken()`,

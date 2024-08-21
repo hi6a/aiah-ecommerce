@@ -1,27 +1,30 @@
 import { inject, Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { UserAuthService } from '../services/user-login.service';
 import { EffectsModule, Actions, createEffect, ofType } from '@ngrx/effects';
 import { login } from './auth.actions';
-import { tap, catchError, map, of, switchMap } from 'rxjs';
+import { tap, catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { ILoginRequest, ILoginResponse } from '../models/auth.model';
 import * as AuthActions from './auth.actions';
 import { Router } from '@angular/router';
+import { CartService } from '../../../features/cart/services/cart.service';
+import { currentUser } from './auth.selector';
 @Injectable()
 export class AuthEffect {
   constructor(
     private actions$: Actions,
-    private router: Router
+    private router: Router,
+    private cartItems: CartService,
+    private store: Store
   ) {}
-  private api = inject(UserAuthService);
-  // actions$ = inject(Actions);
-
+  currentUser!: number;
   login$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.login),
         tap((action) => {
           // console.log('Effect triggered:', action);
+
           localStorage.setItem(
             'user',
             JSON.stringify({
@@ -39,6 +42,7 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
+
         tap((action) => {
           localStorage.removeItem('user');
           this.router.navigateByUrl('/login');
@@ -46,16 +50,4 @@ export class AuthEffect {
       ),
     { dispatch: false }
   );
-
-  // refresh$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(AuthActions.refresh),
-  //       tap((action) => {
-
-  //         this.router.navigateByUrl('/login');
-  //       })
-  //     ),
-  //   { dispatch: false }
-  // );
 }

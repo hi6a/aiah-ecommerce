@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { CartGridComponent } from './components/cart-grid/cart-grid.component';
 
-const routes: Routes = [{ path: '', component: CartPageComponent }];
+const routes: Routes = [{ path: '', component: CartGridComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

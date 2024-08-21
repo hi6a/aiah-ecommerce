@@ -23,3 +23,7 @@ export const isLoggedOut = createSelector(isLoggedIn, (loggedIn) => !loggedIn);
 
 export const token = createSelector(selectAuthState, (auth) => auth.token);
 export const userEmail = createSelector(selectAuthState, (auth) => auth.email);
+export const currentUser = createSelector(
+  selectAuthState,
+  (auth) => auth.userId
+);
