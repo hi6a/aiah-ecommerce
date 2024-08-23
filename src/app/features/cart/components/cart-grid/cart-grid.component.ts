@@ -88,4 +88,10 @@ export class CartGridComponent {
       this.showTotal = true;
     }
   }
+
+  onClearCode() {
+    this.discountCode = '';
+    this.showTotal = false;
+    this.showMessage = false;
+  }
 }

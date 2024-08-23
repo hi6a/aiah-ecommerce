@@ -1,4 +1,41 @@
 <nav>
+  <div class="hidden-links-menu">
+    <button mat-icon-button [matMenuTriggerFor]="linksMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #linksMenu="matMenu">
+      <ng-container>
+        <button aria-label="Home button" mat-menu-item routerLink="">
+          <span>Home</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <button
+          aria-label="Products button"
+          mat-menu-item
+          routerLink="/products"
+        >
+          <span>Products</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <button aria-label="Sale button" mat-menu-item routerLink="/sale">
+          <span>Sale</span>
+        </button>
+      </ng-container>
+      <ng-container>
+        <a href="#about-us">
+          <button
+            aria-label="About us button"
+            mat-menu-item
+            routerLink="/login"
+          >
+            <span>About us</span>
+          </button></a
+        >
+      </ng-container>
+    </mat-menu>
+  </div>
   <div class="links">
     <a routerLink="" class="active">Home</a>
     <a routerLink="/products">Products</a>

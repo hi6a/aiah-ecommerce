@@ -23,7 +23,7 @@
     </div>
 
     <mat-form-field class="search-form-field">
-      @if (searchValue) {
+      @if (!searchValue) {
         <button
           matSuffix
           mat-icon-button

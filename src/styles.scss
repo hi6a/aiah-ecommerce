@@ -43,6 +43,9 @@ $final-project-theme: mat.define-light-theme(
 @import './styles/mat_override';
 @import './styles/typography';
 
+html {
+  scroll-behavior: smooth;
+}
 html,
 body {
   height: 100%;

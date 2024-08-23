@@ -45,20 +45,29 @@
               aria-label="Decrease quantity of product"
               (click)="onDec(i)"
             >
-              <mat-icon>keyboard_arrow_left</mat-icon>
+              <mat-icon>remove</mat-icon>
             </button>
-            <input
+            <!-- <input
               class="quantity-input"
               type="number"
               [(ngModel)]="item.quantity"
               (ngModelChange)="onInputQuantity(i, item.quantity)"
-            />
+            /> -->
+
+            <mat-form-field class="quantity-form-field">
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="item.quantity"
+                (ngModelChange)="onInputQuantity(i, item.quantity)"
+              />
+            </mat-form-field>
             <button
               mat-icon-button
               aria-label="Increase quantity of product"
               (click)="onInc(i)"
             >
-              <mat-icon>keyboard_arrow_right</mat-icon>
+              <mat-icon>add</mat-icon>
             </button>
           </div>
         </td>
@@ -98,25 +107,34 @@
       <td></td>
       <td>Discount code</td>
       <td>
-        <div class="discount-container">
+        <mat-form-field class="discount-form-field">
           <input
-            class="discount-input"
+            matInput
             type="text"
             placeholder="enter discount code"
-            (input)="checkCode()"
             [(ngModel)]="discountCode"
+            (input)="checkCode()"
             (keyup.enter)="onDiscount()"
           />
-
-          @if (showMessage) {
-            <small>This discount code is invalid</small>
-          }
-          @if (showTotal) {
-            <small
-              >You saved {{ cartService.totalPrice() * 0.1 | currency }}</small
+          @if (discountCode) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="onClearCode()"
             >
+              <mat-icon>close</mat-icon>
+            </button>
           }
-        </div>
+        </mat-form-field>
+        @if (showMessage) {
+          <small>This discount code is invalid</small>
+        }
+        @if (showTotal) {
+          <small
+            >You saved {{ cartService.totalPrice() * 0.1 | currency }}</small
+          >
+        }
       </td>
     </tr>
     @if (showTotal) {

@@ -19,7 +19,13 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
-import { SharedModule } from './shared/shared.module';
+
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { FormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent, ShellComponent],
@@ -37,11 +43,11 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    SharedModule,
+    FormsModule,
   ],
 
   bootstrap: [AppComponent],
 
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(), provideHttpClient()],
 })
 export class AppModule {}

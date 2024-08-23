@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsApiService } from '../../services/products-api.service';
 import { Product } from '../../models/products.model';
 import { CartService } from '../../../cart/services/cart.service';
-import { NewProductsService } from '../../../../shared/services/new-products.service';
+
 import { SaleService } from '../../../sale/services/sale.service';
 import { map, Observable, switchMap, tap } from 'rxjs';
 import { CategoriesService } from '../../services/categories.service';
+import { NewProductsService } from '../../services/new-products.service';
 
 @Component({
   selector: 'app-product-details',

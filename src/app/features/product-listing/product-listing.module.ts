@@ -14,11 +14,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
+
 import { DiscountPipe } from '../../shared/pipes/discount.pipe';
 import { ViewCardComponent } from '../../shared/components/view-card/view-card.component';
 import { MatOption, MatSelect } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { MatOptionModule } from '@angular/material/core';
     MatButtonModule,
     FormsModule,
     RouterModule,
-    SharedModule,
     DiscountPipe,
     ViewCardComponent,
     MatSelect,

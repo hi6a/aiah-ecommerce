@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NewProductsService } from '../../../../shared/services/new-products.service';
+
 import { Product } from '../../../product-listing/models/products.model';
+import { NewProductsService } from '../../../product-listing/services/new-products.service';
 
 @Component({
   selector: 'app-just-landed-products',

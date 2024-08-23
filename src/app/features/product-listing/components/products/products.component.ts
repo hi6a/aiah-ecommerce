@@ -5,7 +5,7 @@ import { CategoriesService } from '../../services/categories.service';
 import { SortService } from '../../services/sort.service';
 import { forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NewProductsService } from '../../../../shared/services/new-products.service';
+import { NewProductsService } from '../../services/new-products.service';
 
 @Component({
   selector: 'app-products',

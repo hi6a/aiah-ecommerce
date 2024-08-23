@@ -77,8 +77,11 @@ td {
   justify-content: flex-start;
   align-items: center;
 
-  .quantity-input {
-    padding-left: 20px;
+  .quantity-form-field {
+    width: 5rem;
+    .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+      text-align: center !important;
+    }
   }
 }
 mat-icon {
@@ -103,26 +106,15 @@ input[type='number'] {
   }
 }
 
-.discount-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-  small {
-    color: var(--accent-color);
-    font-size: 10px;
+.discount-form-field {
+  width: 80%;
+  input {
+    font-size: var(--font-xx-small);
+    text-align: end;
   }
 }
-.discount-input {
-  font-family: 'Lexend Tera', Roboto, 'Helvetica Neue';
-  font-size: var(--font-xx-small);
-  padding-left: 0.5rem;
-  border-radius: 0;
-  height: 3vh;
-  &:focus {
-    border-radius: 0;
-  }
+.mdc-text-field {
+  padding: 0 !important;
 }
 td:last-child {
   text-align: right;

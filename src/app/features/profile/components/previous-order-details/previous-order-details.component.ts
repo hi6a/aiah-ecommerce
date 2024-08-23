@@ -5,7 +5,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { ICartItem } from '../../../cart/models/cart.model';
+
 import { IUserCartLog } from '../../../cart/models/userCartLog.model';
 
 import { ProfileService } from '../../services/profile.service';
@@ -14,9 +14,8 @@ import { ProductsApiService } from '../../../product-listing/services/products-a
 import { CommonModule } from '@angular/common';
 import { SaleService } from '../../../sale/services/sale.service';
 import { DiscountPipe } from '../../../../shared/pipes/discount.pipe';
-import { IOrderModel } from '../../../cart/models/order.model';
 import { forkJoin, map, Observable } from 'rxjs';
-import { NewProductsService } from '../../../../shared/services/new-products.service';
+import { NewProductsService } from '../../../product-listing/services/new-products.service';
 
 @Component({
   selector: 'app-previous-order-details',
