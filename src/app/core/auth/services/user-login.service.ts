@@ -17,10 +17,10 @@ export class UserAuthService {
       .pipe(tap((response) => console.log('API Response:', response)));
   }
 
-  refresh(refreshToken: string): Observable<string> {
+  refresh(token: string): Observable<string> {
     return this.http.post<string>(
       `${environment.authURL}User/RefreshToken()`,
-      refreshToken
+      token
     );
   }
 }
