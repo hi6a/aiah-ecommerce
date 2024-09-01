@@ -128,10 +128,10 @@
           }
         </mat-form-field>
         @if (showMessage) {
-          <small>This discount code is invalid</small>
+          <small class="message">This discount code is invalid</small>
         }
         @if (showTotal) {
-          <small
+          <small class="message"
             >You saved {{ cartService.totalPrice() * 0.1 | currency }}</small
           >
         }

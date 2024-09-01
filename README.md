@@ -1,27 +1,97 @@
-# FinalProject
+# <img src="./src/assets/hug.png" alt="Logo" width="50" style="vertical-align: middle; margin-bottom:10px"/> Aïah
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+An e-commerce website built with **Angular Framework**, **Fake Store API**, and local data. While the Fake Store API provides only 4 categories, I added a fifth one, "skincare," in honor of my friend Ayah, who's always dreamed of having her own e-pharmacy, hence the name of the project **Aïah** 😊
 
-## Development server
+<div style="text-align: center;">
+  <img src="./src/assets/aiah 2.png" alt="Home Page" width="800px" style="display:block; margin: 0 auto;"/>
+</div>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Technologies Used
 
-## Code scaffolding
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+- **Fake Stroe API**: https://fakestoreapi.com/docs
+- **Authentication API**: http://173.249.40.235:5005/swagger/index.html#/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## User Features
 
-## Build
+### Products
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<table>
+  <tr>
+    <td>
+      <img src="./src/assets/aiah products.png" alt="Products Page" width="700px" style="display:inline;"/>
+    </td>
+    <td >
+      <ul>
+        <li>Products listing</li>
+        <li>Filter and sort product list</li>
+        <li>Search through products</li>
+        <li>Single product view <em>(displays similar items)</em></li>
+        <li>View products on Sale <em>(can be also viewed in the "Sale" tab)</em></li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-## Running unit tests
+### Cart
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<table>
+  <tr>
+    <td>
+      <img src="./src/assets/aiah cart.png" alt="Cart Page" width="700px" style="display:inline;"/>
+    </td>
+    <td >
+      <ul>
+        <li>Add items to cart</li>
+        <li>Update cart</li>
+        <li>Delete cart</li>
+        <li>Increase/Decrease cart item quantity</li>
+        <li>Remove cart item</li>
+        <li>Use discount code at checkout</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-## Running end-to-end tests
+### User Profile
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<table>
+  <tr>
+    <td>
+      <img src="./src/assets/aiah profile.png" alt="Profile Page" width="700px" style="display:inline;"/>
+    </td>
+    <td >
+      <ul>
+        <li>View user details</li>
+        <li>View previous orders</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-## Further help
+## Steps to Run the Project
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/hi6a/aiah-ecommerce.git
+   ```
+2. **Navigate to the project directory and install Angular CLI**:
+
+   ```bash
+   cd diretory-name
+   npm install -g @angular/cli
+   ```
+
+3. **Install project dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server**:
+
+   ```bash
+   ng serve
+   ```
+
+5. Open `http://localhost:4200/` in your browser.
